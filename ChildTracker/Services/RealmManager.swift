@@ -138,12 +138,19 @@ extension RealmManager {
             let realm = try! Realm()
             if let lastState = RealmManager.lastState() {
                 try! realm.write {
-                    // need to close active state
-                    if let lastLine = lastState.lines.last {
-                        lastLine.finish = date
-                        lastLine.duration = date.timeIntervalSince(lastLine.start)
-                        
-                        lastState.condition = realm.object(ofType: DBCondition.self, forPrimaryKey: Condition.finished.rawValue)!
+                    if let condition = lastState.condition {
+                        if condition.id == Condition.paused.rawValue {
+                            // just need to set finish condition
+                            lastState.condition = realm.object(ofType: DBCondition.self, forPrimaryKey: Condition.finished.rawValue)!
+                        } else {
+                            // need to close active state
+                            if let lastLine = lastState.lines.last {
+                                lastLine.finish = date
+                                lastLine.duration = date.timeIntervalSince(lastLine.start)
+                                
+                                lastState.condition = realm.object(ofType: DBCondition.self, forPrimaryKey: Condition.finished.rawValue)!
+                            }
+                        }
                     }
                     completion(true)
                 }
