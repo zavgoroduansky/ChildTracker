@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NormalButton" customModule="ChildTracker" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="H6h-ei-57w" id="3DH-1f-1z6"/>
+                <outlet property="mainButton" destination="hex-94-JHj" id="Stb-D1-UDY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="H6h-ei-57w">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hex-94-JHj">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                    <state key="normal" title="Next -&gt;">
+                        <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="mainButtonAction:" destination="-1" eventType="touchUpInside" id="5q2-oi-XTS"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="hex-94-JHj" firstAttribute="top" secondItem="QT7-WD-0Kz" secondAttribute="top" id="4kP-rO-wYl"/>
+                <constraint firstItem="hex-94-JHj" firstAttribute="leading" secondItem="QT7-WD-0Kz" secondAttribute="leading" id="PaW-hA-7Mx"/>
+                <constraint firstItem="QT7-WD-0Kz" firstAttribute="bottom" secondItem="hex-94-JHj" secondAttribute="bottom" id="Reo-yW-7oj"/>
+                <constraint firstItem="QT7-WD-0Kz" firstAttribute="trailing" secondItem="hex-94-JHj" secondAttribute="trailing" id="RyT-S7-dvg"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="QT7-WD-0Kz"/>
+        </view>
+    </objects>
+</document>
