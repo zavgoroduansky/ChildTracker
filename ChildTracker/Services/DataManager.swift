@@ -55,7 +55,7 @@ extension DataManager {
     func currentLocation(completion: @escaping (Location, Date?) -> Void) {
         
         RealmManager.currentLocation { (realmLocationTracker) in
-            completion(self.convertDBLocation(realmLocationTracker?.location) ?? .home, realmLocationTracker?.start ?? nil)
+            completion(DataManager.convertDBLocation(realmLocationTracker?.location) ?? .home, realmLocationTracker?.start ?? nil)
         }
     }
     
@@ -122,24 +122,17 @@ extension DataManager {
     func currentState(completion: @escaping (StateLine, Date?) -> Void) {
         
         RealmManager.currentState { (realmStateTracker) in
-            completion(self.convertDBStateTracker(realmStateTracker), realmStateTracker?.start ?? nil)
+            completion(DataManager.convertDBStateTracker(realmStateTracker), realmStateTracker?.start ?? nil)
         }
     }
     
     func detailedHistoryStates(completion: @escaping ([StateLine]) -> Void) {
         
-        var statesId = [Int]()
-        State.allCases.forEach { (state) in
-            if state.showDetailViews() {
-                statesId.append(state.rawValue)
-            }
-        }
-        
-        RealmManager.detailedHistoryStates(statesId: statesId) { (realmStateTrackerArray) in
+        RealmManager.detailedHistoryStates(statesId: [State.sleep.rawValue, State.feeding.rawValue, State.bathing.rawValue]) { (realmStateTrackerArray) in
             var result = [StateLine]()
             
             for track in realmStateTrackerArray {
-                result.append(self.convertDBStateTracker(track))
+                result.append(DataManager.convertDBStateTracker(track))
             }
             completion(result)
         }
@@ -226,7 +219,7 @@ extension DataManager {
 // MARK: private
 private extension DataManager {
     
-    func convertDBStateTracker(_ stateTracker: DBStateTracker?) -> StateLine {
+    static func convertDBStateTracker(_ stateTracker: DBStateTracker?) -> StateLine {
         
         guard let existedStateTracker = stateTracker else {
             return StateLine()
@@ -240,10 +233,10 @@ private extension DataManager {
             return StateLine()
         }
         
-        return StateLine(state: state, duration: stateTracker?.lines.sum(ofProperty: "duration") ?? 0, side: convertDBSide(existedStateTracker.lines.last?.side), condition: condition)
+        return StateLine(state: state, startDate: existedStateTracker.start, duration: stateTracker?.lines.sum(ofProperty: "duration") ?? 0, side: convertDBSide(existedStateTracker.lines.last?.side), condition: condition)
     }
     
-    func convertDBLocation(_ location: DBLocation?) -> Location? {
+    static func convertDBLocation(_ location: DBLocation?) -> Location? {
         
         guard let existedLocation = location else {
             return nil
@@ -252,7 +245,7 @@ private extension DataManager {
         return Location(rawValue: existedLocation.id)
     }
     
-    func convertDBState(_ state: DBState?) -> State? {
+    static func convertDBState(_ state: DBState?) -> State? {
         
         guard let existedState = state else {
             return nil
@@ -261,7 +254,7 @@ private extension DataManager {
         return State(rawValue: existedState.id)
     }
     
-    func convertDBSide(_ side: DBSide?) -> Side? {
+    static func convertDBSide(_ side: DBSide?) -> Side? {
         
         guard let existedSide = side else {
             return nil
@@ -270,7 +263,7 @@ private extension DataManager {
         return Side(rawValue: existedSide.id)
     }
     
-    func convertDBCondition(_ condition: DBCondition?) -> Condition? {
+    static func convertDBCondition(_ condition: DBCondition?) -> Condition? {
         
         guard let existedCondition = condition else {
             return nil

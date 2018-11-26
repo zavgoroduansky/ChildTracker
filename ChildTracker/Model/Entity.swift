@@ -33,6 +33,7 @@ struct StateReportElement {
 struct StateLine: Equatable {
     
     var state: State = State.activity
+    var startDate: Date = Date()
     var duration: Double = 0
     var side: Side? = nil
     var condition: Condition = Condition.finished

@@ -79,9 +79,9 @@ extension ReportViewControllerPresenter: UITableViewDataSource {
         
         switch section {
         case 0:
-            return reportManager?.locationData.count ?? 0
+            return Location.allCases.count - 1
         case 1:
-            return reportManager?.stateData.count ?? 0
+            return State.allCases.count - 1
         default:
             return 0
         }
@@ -107,12 +107,12 @@ extension ReportViewControllerPresenter: UITableViewDataSource {
         case 0:
             if let element = reportManager?.locationData[indexPath.row] {
                 cell.textLabel?.text = element.location.title()
-                cell.detailTextLabel?.text = FormatManager.formatDurationInSecondsFor(Int(element.duration))
+                cell.detailTextLabel?.text = FormatManager.formatDurationForTimer(Int(element.duration))
             }
         case 1:
             if let element = reportManager?.stateData[indexPath.row] {
                 cell.textLabel?.text = element.state.title()
-                cell.detailTextLabel?.text = FormatManager.formatDurationInSecondsFor(Int(element.duration))
+                cell.detailTextLabel?.text = FormatManager.formatDurationForTimer(Int(element.duration))
             }
         default: break
         }

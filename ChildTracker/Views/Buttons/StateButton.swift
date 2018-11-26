@@ -16,7 +16,8 @@ class StateButton: DesignableButton {
     
     // MARK: UI
     @IBOutlet weak var stateLabel: UILabel!
-    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var leftDetailView: UIView!
     @IBOutlet weak var rightDetailView: UIView!
     @IBOutlet weak var playPauseImageView: UIImageView!
@@ -42,6 +43,7 @@ class StateButton: DesignableButton {
         contentView.layer.shadowOpacity = 0.5
         
         stateLabel.textColor = UIColor.yellow
+        detailLabel.textColor = UIColor.yellow
         
         leftDetailView.layer.cornerRadius = leftDetailView.bounds.height / 2
         rightDetailView.layer.cornerRadius = leftDetailView.bounds.height / 2
@@ -59,11 +61,15 @@ class StateButton: DesignableButton {
         rightDetailView.isHidden = !showDetailViews
     }
     
-    func setDetailText(_ text: String) {
-        durationLabel.text = text
+    func setTimerText(_ text: String) {
+        timerLabel.text = text
     }
     
-    func setDetailView(_ side: Side?) {
+    func setDetailText(_ text: String) {
+        detailLabel.text = text
+    }
+    
+    func setSideView(_ side: Side?) {
         
         leftDetailView.backgroundColor = UIColor.lightGray
         rightDetailView.backgroundColor = UIColor.lightGray

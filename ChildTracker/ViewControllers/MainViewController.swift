@@ -65,12 +65,11 @@ extension MainViewController {
     func updateContainers(_ stateLines: [StateLine]) {
         
         for stateLine in stateLines {
-            if stateLine.state == currentStateLine.state {
-                continue
-            }
-            
+            // set detail text
+            self.containerFromState(stateLine.state).setDetailText(prepareDetailTextFor(stateLine: stateLine))
+            // set side
             if stateLine.state.showDetailViews() {
-                self.containerFromState(stateLine.state).setDetailView(stateLine.side)
+                self.containerFromState(stateLine.state).setSideView(stateLine.side)
             }
         }
     }
@@ -91,13 +90,17 @@ extension MainViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func updateCurrentStateDetailText(_ text: String) {
-        containerFromState(currentStateLine.state).setDetailText(text)
+    func updateCurrentStateTimerText(_ text: String) {
+        containerFromState(currentStateLine.state).setTimerText(text)
     }
 }
 
 // MARK: Private
 private extension MainViewController {
+    
+    func prepareDetailTextFor(stateLine: StateLine) -> String {
+        return "Last time \(FormatManager.formatDayDifference(for: stateLine.startDate)) for \(FormatManager.formatDurationForDetail(Int(stateLine.duration)))"
+    }
     
     func containerFromState(_ state: State) -> StateButton {
         
@@ -121,20 +124,20 @@ private extension MainViewController {
                 let angle = self.calculateRotationAngleFor(stateLine.state)
                 self.statesContainer.transform = self.statesContainer.transform.rotated(by: angle)
                 self.topStateContainer.rotateToAngle(-angle)
-                self.topStateContainer.setDetailText("")
+                self.topStateContainer.setTimerText("")
                 self.topStateContainer.setPlayPauseImageViewTo(.finished)
                 self.leftStateContainer.rotateToAngle(-angle)
-                self.leftStateContainer.setDetailText("")
+                self.leftStateContainer.setTimerText("")
                 self.leftStateContainer.setPlayPauseImageViewTo(.finished)
                 self.rightStateContainer.rotateToAngle(-angle)
-                self.rightStateContainer.setDetailText("")
+                self.rightStateContainer.setTimerText("")
                 self.rightStateContainer.setPlayPauseImageViewTo(.finished)
                 self.bottomStateContainer.rotateToAngle(-angle)
-                self.bottomStateContainer.setDetailText("")
+                self.bottomStateContainer.setTimerText("")
                 self.bottomStateContainer.setPlayPauseImageViewTo(.finished)
                 
                 if stateLine.state.showDetailViews() {
-                    self.containerFromState(stateLine.state).setDetailView(stateLine.side)
+                    self.containerFromState(stateLine.state).setSideView(stateLine.side)
                 }
                 
                 if stateLine.state != .activity {

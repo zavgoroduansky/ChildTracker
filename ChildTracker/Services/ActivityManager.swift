@@ -69,6 +69,7 @@ class ActivityManager {
     // MARK: Private properties
     private var locationTimer: Timer?
     private var stateTimer: Timer?
+    private var detailTimer: Timer?
     private var activeStateTimerDuration: Int = 0
     
     convenience init(dataManager: DataManager) {
@@ -88,12 +89,18 @@ extension ActivityManager {
         
         stateTimer?.invalidate()
         stateTimer = nil
+        
+        detailTimer?.invalidate()
+        detailTimer = nil
     }
     
     func resumeAllOperations() {
         
         initCurrentLocation()
         initCurrentState()
+        
+        detailTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(detailTimerTick), userInfo: nil, repeats: true)
+        detailTimer?.fire()
     }
 }
 
@@ -132,13 +139,6 @@ private extension ActivityManager {
             DispatchQueue.main.async { [unowned self] in
                 self.delegate?.setStateLine(stateLine)
                 self.currentStateLine = stateLine
-            }
-        })
-        
-        // need to get history states with side
-        dataManager?.detailedHistoryStates(completion: { [unowned self] (stateLineArray) in
-            DispatchQueue.main.async { [unowned self] in
-                self.delegate?.updateDetailedStateLines(stateLineArray)
             }
         })
     }
@@ -249,5 +249,15 @@ private extension ActivityManager {
         
         stateTimerDuration += 1
         delegate?.stateTimerTick()
+    }
+    
+    @objc func detailTimerTick() {
+        
+        // need to get history states with side
+        dataManager?.detailedHistoryStates(completion: { [unowned self] (stateLineArray) in
+            DispatchQueue.main.async { [unowned self] in
+                self.delegate?.updateDetailedStateLines(stateLineArray)
+            }
+        })
     }
 }

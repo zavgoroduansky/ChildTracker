@@ -28,7 +28,7 @@ extension MainViewControllerPresenter {
         container.initButtonWith(tag: state.rawValue, title: state.title(), showDetailViews: state.showDetailViews()) { [unowned self] (sender) in
             if let selectedState = State.init(rawValue: sender.tag) {
                 if selectedState != self.activityManager?.currentStateLine.state, let previousStateLine = self.viewController?.currentStateLine {
-                    self.viewController?.currentStateLine = StateLine(state: state, duration: 0, side: nil, condition: .finished)
+                    self.viewController?.currentStateLine = StateLine(state: state, startDate: Date(), duration: 0, side: nil, condition: .finished)
                     // need to switch to new state
                     if selectedState.showDetailViews() {
                         self.viewController?.showSideChoosingView(completion: { (side) in
@@ -79,14 +79,14 @@ extension MainViewControllerPresenter: ActivityManagerDelegate {
     func locationTimerTick() {
         
         if let duration = activityManager?.locationTimerDuration {
-            viewController?.locationSegmentedContainer.detailLabel.text = FormatManager.formatDurationInSecondsFor(duration)
+            viewController?.locationSegmentedContainer.detailLabel.text = FormatManager.formatDurationForTimer(duration)
         }
     }
     
     func stateTimerTick() {
         
         if let duration = activityManager?.stateTimerDuration {
-            viewController?.updateCurrentStateDetailText(FormatManager.formatDurationInSecondsFor(duration))
+            viewController?.updateCurrentStateTimerText(FormatManager.formatDurationForTimer(duration))
         }
     }
 }
@@ -125,7 +125,7 @@ private extension MainViewControllerPresenter {
     
     func switchToState(_ state: State, side: Side?) {
         
-        self.viewController?.currentStateLine = StateLine(state: state, duration: 0, side: side, condition: .active)
-        self.activityManager?.currentStateLine = StateLine(state: state, duration: 0, side: side, condition: .active)
+        self.viewController?.currentStateLine = StateLine(state: state, startDate: Date(), duration: 0, side: side, condition: .active)
+        self.activityManager?.currentStateLine = StateLine(state: state, startDate: Date(), duration: 0, side: side, condition: .active)
     }
 }

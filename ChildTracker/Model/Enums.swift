@@ -119,6 +119,8 @@ enum Location: Int {
     }
 }
 
+extension Location: CaseIterable {}
+
 // available state of child
 enum State: Int {
     
