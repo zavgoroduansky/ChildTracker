@@ -62,7 +62,6 @@ class SegmentedView: DesignableView {
         contentView = view
         
         // Add our border here and every custom setup
-        contentView.backgroundColor = UIColor.lightGray
     }
     
     func setupView(dataSource: SegmentedViewDataSource?, delegate: SegmentedViewDelegate?) {

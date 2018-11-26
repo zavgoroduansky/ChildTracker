@@ -8,8 +8,9 @@
 
 import Foundation
 
-let childKey = "child"
+let childKey            = "child"
 let notShowStartPageKey = "notShowStartPage"
+let reportIntervalKey   = "reportInterval"
 
 class UserDefaultManager {
     
@@ -45,5 +46,19 @@ class UserDefaultManager {
     
         let userDefaults = UserDefaults.standard
         return !userDefaults.bool(forKey: notShowStartPageKey)
+    }
+    
+    static func setReportInterval(_ interval: Intervals) {
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(interval.rawValue, forKey: reportIntervalKey)
+        
+        userDefaults.synchronize()
+    }
+    
+    static func fetchReportInterval() -> Intervals? {
+        
+        let userDefaults = UserDefaults.standard
+        return Intervals.init(rawValue: userDefaults.integer(forKey: reportIntervalKey))
     }
 }

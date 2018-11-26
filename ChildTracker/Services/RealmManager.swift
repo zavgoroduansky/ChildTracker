@@ -76,13 +76,26 @@ extension RealmManager {
         }
     }
     
-    static func fetchTotalDurationFor(locationId: Int, completion: @escaping (Double) -> Void) {
+    static func fetchTotalDurationFor(locationId: Int, startDate: Date?, endDate: Date?, completion: @escaping (Double) -> Void) {
         
-        let predicate = NSPredicate(format: "location.id = %i", locationId)
+        let predicateFormat = "location.id = \(locationId) AND duration > 0" + preparePredicateFormatString(startDate: startDate, endDate: endDate)
+        
+        let predicate = NSPredicate(format: predicateFormat)
+        var duration: TimeInterval = 0
         
         realmQueue.async {
             let realm = try! Realm()
-            let duration: Double = realm.objects(DBLocationTracker.self).filter(predicate).sum(ofProperty: "duration")
+            
+            let result = realm.objects(DBLocationTracker.self).filter(predicate).sorted(byKeyPath: "start", ascending: true)
+            autoreleasepool {
+                for line in result {
+                    let startLine = (startDate == nil ? line.start : max(line.start, startDate!))
+                    let finishLine = (endDate == nil ? line.finish! : min(line.finish!, endDate!))
+                    
+                    // need to calculate new duration
+                    duration += finishLine.timeIntervalSince(startLine)
+                }
+            }
             completion(duration)
         }
     }
@@ -142,6 +155,13 @@ extension RealmManager {
                         if condition.id == Condition.paused.rawValue {
                             // just need to set finish condition
                             lastState.condition = realm.object(ofType: DBCondition.self, forPrimaryKey: Condition.finished.rawValue)!
+                            // need to get last state line and set finish date from it
+                            if let lastLine = lastState.lines.sorted(byKeyPath: "start", ascending: false).first {
+                                lastState.finish = lastLine.finish
+                            } else {
+                                // this is not so good becouse we need to set finish date from last line but not from current date
+                                lastState.finish = date
+                            }
                         } else {
                             // need to close active state
                             if let lastLine = lastState.lines.last {
@@ -149,6 +169,7 @@ extension RealmManager {
                                 lastLine.duration = date.timeIntervalSince(lastLine.start)
                                 
                                 lastState.condition = realm.object(ofType: DBCondition.self, forPrimaryKey: Condition.finished.rawValue)!
+                                lastState.finish = date
                             }
                         }
                     }
@@ -193,7 +214,6 @@ extension RealmManager {
                     lastState.lines.append(newLine)
                     
                     lastState.condition = realm.object(ofType: DBCondition.self, forPrimaryKey: Condition.active.rawValue)!
-                    lastState.start = startDate
                 }
             } else {
                 // there is no object
@@ -202,21 +222,33 @@ extension RealmManager {
         }
     }
     
-    static func fetchTotalDurationFor(statesId: [Int], completion: @escaping ([Int: Double]) -> Void) {
+    static func fetchTotalDurationFor(statesId: [Int], startDate: Date?, endDate: Date?, completion: @escaping ([Int: Double]) -> Void) {
         
-        var result = [Int: Double]()
+        var resultDictionary = [Int: Double]()
         
         realmQueue.async {
             let realm = try! Realm()
-            for id in statesId {
-                let predicate = NSPredicate(format: "state.id = %i AND condition.id = %i", id, Condition.finished.rawValue)
-                var duration: Double = 0
-                for currenState in realm.objects(DBStateTracker.self).filter(predicate).enumerated() {
-                    duration += currenState.element.lines.sum(ofProperty: "duration")
+            autoreleasepool {
+                for id in statesId {
+                    var duration: Double = 0
+                    
+                    let predicateFormat = String(format: "state.id = %i AND condition.id = %i", id, Condition.finished.rawValue) + preparePredicateFormatString(startDate: startDate, endDate: endDate)
+                    let predicate = NSPredicate(format: predicateFormat)
+                    
+                    let result = realm.objects(DBStateTracker.self).filter(predicate).sorted(byKeyPath: "start", ascending: true)
+                    for stateLine in result {
+                        for line in stateLine.lines {
+                            let startLine = (startDate == nil ? line.start : max(line.start, startDate!))
+                            let finishLine = (endDate == nil ? line.finish! : min(line.finish!, endDate!))
+                            
+                            // need to calculate new duration
+                            duration += finishLine.timeIntervalSince(startLine)
+                        }
+                    }
+                    resultDictionary[id] = duration
                 }
-                result[id] = duration
             }
-            completion(result)
+            completion(resultDictionary)
         }
     }
 }
@@ -256,5 +288,36 @@ private extension RealmManager {
             }
         }
         return true
+    }
+    
+    static func preparePredicateFormatString(startDate: Date?, endDate: Date?) -> String {
+        
+        var predicateFormat = ""
+        
+        if let start = startDate, let finish = endDate {
+            predicateFormat.append(" AND (")
+            predicateFormat.append(NSPredicate(format: "(start > %@ AND finish < %@)", start as CVarArg, finish as CVarArg).predicateFormat)
+            predicateFormat.append(" OR ")
+            predicateFormat.append(NSPredicate(format: "(start > %@ AND start < %@)", start as CVarArg, finish as CVarArg).predicateFormat)
+            predicateFormat.append(" OR ")
+            predicateFormat.append(NSPredicate(format: "(finish > %@ AND finish < %@)", start as CVarArg, finish as CVarArg).predicateFormat)
+            predicateFormat.append(" OR ")
+            predicateFormat.append(NSPredicate(format: "(start < %@ AND finish > %@)", start as CVarArg, finish as CVarArg).predicateFormat)
+            predicateFormat.append(")")
+        } else if let start = startDate {
+            predicateFormat.append(" AND (")
+            predicateFormat.append(NSPredicate(format: "(start < %@ AND finish > %@)", start as CVarArg).predicateFormat)
+            predicateFormat.append(" OR ")
+            predicateFormat.append(NSPredicate(format: "(start > %@)", start as CVarArg).predicateFormat)
+            predicateFormat.append(")")
+        } else if let finish = endDate {
+            predicateFormat.append(" AND (")
+            predicateFormat.append(NSPredicate(format: "(start < %@ AND finish > %@)", finish as CVarArg).predicateFormat)
+            predicateFormat.append(" OR ")
+            predicateFormat.append(NSPredicate(format: "(start < %@)", finish as CVarArg).predicateFormat)
+            predicateFormat.append(")")
+        }
+        
+        return predicateFormat
     }
 }

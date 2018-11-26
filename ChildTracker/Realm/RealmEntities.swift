@@ -96,7 +96,8 @@ class DBStateTracker: Object {
     
     @objc dynamic var state: DBState?
     @objc dynamic var condition: DBCondition?   // condition based on the last DBStateTrackerLine
-    @objc dynamic var start = Date()            // start date based on the last DBStateTrackerLine. need for sorting list of DBStateTracker
+    @objc dynamic var start = Date()            // start date based on the first DBStateTrackerLine. need for sorting list of DBStateTracker
+    @objc dynamic var finish: Date? = nil       // finish date based on the last DBStateTrackerLine. need for fetching data for reports
     let lines = List<DBStateTrackerLine>()
     
     convenience init(state: DBState, condition: DBCondition, startDate: Date) {

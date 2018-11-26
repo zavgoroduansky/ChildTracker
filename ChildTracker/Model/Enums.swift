@@ -8,6 +8,54 @@
 
 import Foundation
 
+// report intervals
+enum Intervals: Int {
+    
+    case last12hours
+    case last24hours
+    case day
+    case week
+    case month
+    
+    static func numberOfElements() -> Int {
+        return 4
+    }
+    
+    func title() -> String {
+        switch self {
+        case .last12hours:
+            return "12 hours"
+        case .last24hours:
+            return "24 hours"
+        case .day:
+            return "Day"
+        case .week:
+            return "Week"
+        case .month:
+            return "Month"
+        }
+    }
+    
+    func startDateFinishDate() -> (start: Date?, finish: Date?) {
+        
+        let currentDate = Date()
+        let currentDateTimeInterval = currentDate.timeIntervalSince1970
+        
+        switch self {
+        case .last12hours:
+            return (Date(timeIntervalSince1970: currentDateTimeInterval - 12*60*60), currentDate)
+        case .last24hours:
+            return (Date(timeIntervalSince1970: currentDateTimeInterval - 24*60*60), currentDate)
+        case .day:
+            return (currentDate.startOfDay, currentDate.endOfDay)
+        case .week:
+            return (currentDate.startOfWeek, currentDate.endOfWeek)
+        case .month:
+            return (currentDate.startOfMonth, currentDate.endOfMonth)
+        }
+    }
+}
+
 // condition (using for realm state condition and button state)
 enum Condition: Int {
     

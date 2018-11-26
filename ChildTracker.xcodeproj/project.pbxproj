@@ -35,6 +35,7 @@
 		2F98FBE7219EE3CD00EB3179 /* DetailButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F98FBE6219EE3CD00EB3179 /* DetailButton.xib */; };
 		2F98FBE9219EE82200EB3179 /* ReportViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F98FBE8219EE82200EB3179 /* ReportViewControllerPresenter.swift */; };
 		2F98FBEB219EF71100EB3179 /* ReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F98FBEA219EF71100EB3179 /* ReportManager.swift */; };
+		2F98FBFC21A82E5800EB3179 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F98FBFB21A82E5800EB3179 /* DateHelper.swift */; };
 		2FCFEB5021930F6A0052F1A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFEB4F21930F6A0052F1A0 /* AppDelegate.swift */; };
 		2FCFEB5221930F6A0052F1A0 /* GreetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFEB5121930F6A0052F1A0 /* GreetingViewController.swift */; };
 		2FCFEB5521930F6A0052F1A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FCFEB5321930F6A0052F1A0 /* Main.storyboard */; };
@@ -120,6 +121,7 @@
 		2F98FBE6219EE3CD00EB3179 /* DetailButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailButton.xib; sourceTree = "<group>"; };
 		2F98FBE8219EE82200EB3179 /* ReportViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewControllerPresenter.swift; sourceTree = "<group>"; };
 		2F98FBEA219EF71100EB3179 /* ReportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportManager.swift; sourceTree = "<group>"; };
+		2F98FBFB21A82E5800EB3179 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		2FCFEB4C21930F6A0052F1A0 /* ChildTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChildTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FCFEB4F21930F6A0052F1A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FCFEB5121930F6A0052F1A0 /* GreetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingViewController.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				2FCFEBA5219457300052F1A0 /* UIViewHelper.swift */,
 				2F0E789C2194621F00585947 /* UITextFieldHandler.swift */,
 				2F98FBE4219EE09B00EB3179 /* UIColorHelper.swift */,
+				2F98FBFB21A82E5800EB3179 /* DateHelper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				2F98FBDC219B15C000EB3179 /* DataManager.swift in Sources */,
 				2F0E78A82195D7A000585947 /* StateButton.swift in Sources */,
 				2F98FBC8219ABB1500EB3179 /* SegmentedView.swift in Sources */,
+				2F98FBFC21A82E5800EB3179 /* DateHelper.swift in Sources */,
 				2F0E78A02194913A00585947 /* Constants.swift in Sources */,
 				2FCFEB9C219448490052F1A0 /* MainViewController.swift in Sources */,
 				2FCFEB5221930F6A0052F1A0 /* GreetingViewController.swift in Sources */,

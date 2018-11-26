@@ -14,6 +14,8 @@ class ReportViewControllerPresenter: NSObject {
     // MARK: Properties
     public weak var viewController: ReportViewController?
     public var reportManager: ReportManager?
+    
+    private lazy var selectedSegment: Intervals = UserDefaultManager.fetchReportInterval() ?? Intervals.last12hours
 }
 
 // MARK: Public
@@ -26,18 +28,33 @@ extension ReportViewControllerPresenter {
         }
     }
     
+    func setupSegmentedControl(_ container: SegmentedView) {
+        
+        container.setupView(dataSource: self, delegate: self)
+        viewController?.segmentedContainer.setSelectedSegment(selectedSegment.rawValue)
+    }
+    
     func setupTableView(_ tableView: UITableView) {
         
         tableView.delegate = self
         tableView.dataSource = self
+    
+        reloadTableView(tableView)
+    }
+}
+
+// MARK: Private
+private extension ReportViewControllerPresenter {
+    
+    func reloadTableView(_ tableView: UITableView) {
         
-        reportManager?.locationTotalDuration(completion: { (success) in
+        reportManager?.locationTotalDuration(interval: selectedSegment, completion: { (success) in
             DispatchQueue.main.async {
                 tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .automatic)
             }
         })
         
-        reportManager?.stateTotalDuration(completion: { (success) in
+        reportManager?.stateTotalDuration(interval: selectedSegment, completion: { (success) in
             DispatchQueue.main.async {
                 tableView.reloadSections(IndexSet(arrayLiteral: 1), with: .automatic)
             }
@@ -45,11 +62,13 @@ extension ReportViewControllerPresenter {
     }
 }
 
+// MARK: UITableViewDelegate
 extension ReportViewControllerPresenter: UITableViewDelegate {
     
     
 }
 
+// MARK: UITableViewDataSource
 extension ReportViewControllerPresenter: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -101,3 +120,36 @@ extension ReportViewControllerPresenter: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: SegmentedViewDataSource
+extension ReportViewControllerPresenter: SegmentedViewDataSource {
+    
+    func numberOfSegments(_ segmentedControl: UISegmentedControl) -> Int {
+        return Intervals.numberOfElements()
+    }
+    
+    func segmentTitle(_ segmentedControl: UISegmentedControl, atIndex: Int) -> String? {
+        
+        if let interval = Intervals.init(rawValue: atIndex) {
+            return interval.title()
+        } else {
+            return ""
+        }
+    }
+}
+
+// MARK: SegmentedViewDelegate
+extension ReportViewControllerPresenter: SegmentedViewDelegate {
+    
+    func didSelectSegmentIn(_ segmentedControl: UISegmentedControl, withIndex: Int) {
+        
+        if let interval = Intervals.init(rawValue: withIndex) {
+            UserDefaultManager.setReportInterval(interval)
+            selectedSegment = interval
+            
+            guard let tableView = viewController?.mainTableView else { return }
+            reloadTableView(tableView)
+        }
+    }
+}
+

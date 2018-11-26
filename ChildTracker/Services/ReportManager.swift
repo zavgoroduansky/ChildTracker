@@ -24,18 +24,18 @@ class ReportManager {
 
 extension ReportManager {
     
-    func locationTotalDuration(completion: @escaping (Bool) -> Void) {
+    func locationTotalDuration(interval: Intervals, completion: @escaping (Bool) -> Void) {
         
-        dataManager?.totalDurationFor(location: .outside, completion: { [unowned self] (duration) in
+        dataManager?.totalDurationFor(location: .outside, interval: interval, completion: { [unowned self] (duration) in
             self.locationData.removeAll()
             self.locationData.append(LocationReportElement(location: .outside, duration: duration))
             completion(true)
         })
     }
     
-    func stateTotalDuration(completion: @escaping (Bool) -> Void) {
+    func stateTotalDuration(interval: Intervals, completion: @escaping (Bool) -> Void) {
         
-        dataManager?.totalStatesDurations(completion: { (result) in
+        dataManager?.totalStatesDurations(interval: interval, completion: { (result) in
             self.stateData.removeAll()
             for line in result {
                 self.stateData.append(StateReportElement(state: line.key, duration: line.value))

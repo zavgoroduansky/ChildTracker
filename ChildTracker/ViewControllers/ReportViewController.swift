@@ -16,6 +16,7 @@ class ReportViewController: BaseViewController {
     // MARK: UI
     @IBOutlet weak var closeContainer: DetailButton!
     @IBOutlet weak var mainTableView: UITableView!
+    @IBOutlet weak var segmentedContainer: SegmentedView!
     
     // MARK: Lifecircle
     override func viewDidLoad() {
@@ -29,6 +30,7 @@ private extension ReportViewController {
     
     func setupViewElements() {
         
+        presenter?.setupSegmentedControl(segmentedContainer)
         presenter?.setupTableView(mainTableView)
         presenter?.setupCloseContainer(closeContainer)
     }

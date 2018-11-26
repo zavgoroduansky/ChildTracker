@@ -105,9 +105,12 @@ extension DataManager {
         }
     }
     
-    func totalDurationFor(location: Location, completion: @escaping (Double) -> Void) {
+    func totalDurationFor(location: Location, interval: Intervals, completion: @escaping (Double) -> Void) {
         
-        RealmManager.fetchTotalDurationFor(locationId: location.rawValue) { (duration) in
+        // need to get interval
+        let dateInterval = interval.startDateFinishDate()
+        
+        RealmManager.fetchTotalDurationFor(locationId: location.rawValue, startDate: dateInterval.start, endDate: dateInterval.finish) { (duration) in
             completion(duration)
         }
     }
@@ -203,9 +206,12 @@ extension DataManager {
         }
     }
     
-    func totalStatesDurations(completion: @escaping ([State : Double]) -> Void) {
+    func totalStatesDurations(interval: Intervals, completion: @escaping ([State : Double]) -> Void) {
         
-        RealmManager.fetchTotalDurationFor(statesId: [State.sleep.rawValue, State.feeding.rawValue, State.bathing.rawValue]) { (result) in
+        // need to get interval
+        let dateInterval = interval.startDateFinishDate()
+        
+        RealmManager.fetchTotalDurationFor(statesId: [State.sleep.rawValue, State.feeding.rawValue, State.bathing.rawValue], startDate: dateInterval.start, endDate: dateInterval.finish) { (result) in
             var answer = [State: Double]()
             for line in result {
                 if let state = State.init(rawValue: line.key) {
