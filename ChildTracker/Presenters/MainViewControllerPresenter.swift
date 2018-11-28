@@ -52,13 +52,6 @@ extension MainViewControllerPresenter {
             }
         }
     }
-    
-    func setupReportContainer(_ container: DetailButton) {
-        
-        container.initButtonWith(tag: 0, title: "Report") { [unowned self] (sender) in
-            self.viewController?.performSegue(withIdentifier: "Report", sender: self.viewController)
-        }
-    }
 }
 
 // MARK: ActivityManagerDelegate

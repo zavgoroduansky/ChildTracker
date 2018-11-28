@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7aS-KQ-nbM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Bottom Panel-->
+        <scene sceneID="cog-B2-5hL">
+            <objects>
+                <viewController id="7aS-KQ-nbM" customClass="BottomPanel" customModule="ChildTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z6I-xS-Uad">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7I-MR-S8e">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CEg-D8-EDQ"/>
+                                </constraints>
+                                <items>
+                                    <tabBarItem systemItem="favorites" id="LnL-mf-E7U"/>
+                                    <tabBarItem systemItem="more" id="9n7-e7-HOu"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="K7I-MR-S8e" firstAttribute="trailing" secondItem="csk-pt-fCe" secondAttribute="trailing" id="8D0-BQ-aef"/>
+                            <constraint firstItem="K7I-MR-S8e" firstAttribute="top" secondItem="csk-pt-fCe" secondAttribute="top" id="TDe-kG-8Hb"/>
+                            <constraint firstItem="K7I-MR-S8e" firstAttribute="leading" secondItem="csk-pt-fCe" secondAttribute="leading" id="b6u-Gd-LTt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="csk-pt-fCe"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="400"/>
+                    <connections>
+                        <outlet property="headerHeight" destination="CEg-D8-EDQ" id="5yb-rl-Pl6"/>
+                        <outlet property="tabBar" destination="K7I-MR-S8e" id="WVH-dX-aGK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wxg-eg-FnH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-316" y="65"/>
+        </scene>
+    </scenes>
+</document>

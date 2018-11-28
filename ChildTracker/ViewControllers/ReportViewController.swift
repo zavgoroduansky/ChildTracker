@@ -14,7 +14,6 @@ class ReportViewController: BaseViewController {
     public var presenter: ReportViewControllerPresenter?
     
     // MARK: UI
-    @IBOutlet weak var closeContainer: DetailButton!
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var segmentedContainer: SegmentedView!
     
@@ -32,6 +31,5 @@ private extension ReportViewController {
         
         presenter?.setupSegmentedControl(segmentedContainer)
         presenter?.setupTableView(mainTableView)
-        presenter?.setupCloseContainer(closeContainer)
     }
 }

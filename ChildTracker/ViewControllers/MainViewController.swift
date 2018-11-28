@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import BubbleTransition
+import Panels
 
 class MainViewController: BaseViewController {
 
     // MARK: Properties
-    private let transition = BubbleTransition()
     public var presenter: MainViewControllerPresenter?
     // activity - is a current state at start of the app
     public var currentStateLine: StateLine = StateLine() {
@@ -20,6 +19,7 @@ class MainViewController: BaseViewController {
             turnCurrentStateTo(stateLine: newValue)
         }
     }
+    lazy var panelManager = Panels(target: self)
     
     // MARK: UI
     @IBOutlet weak var locationSegmentedContainer: SegmentedView!
@@ -29,7 +29,6 @@ class MainViewController: BaseViewController {
     @IBOutlet weak var leftStateContainer: StateButton!
     @IBOutlet weak var rightStateContainer: StateButton!
     @IBOutlet weak var bottomStateContainer: StateButton!
-    @IBOutlet weak var reportContainer: DetailButton!
     
     // MARK: Lifecircle
     override func viewDidLoad() {
@@ -37,17 +36,12 @@ class MainViewController: BaseViewController {
 
         setupViewElements()
         showFirstLaunchPageControl()
-    }
-    
-    // MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Report" {
-            if let reportViewController = segue.destination as? ReportViewController {
-                Router.prepareReportViewController(reportViewController)
-                reportViewController.transitioningDelegate = self
-                reportViewController.modalPresentationStyle = .custom
-            }
-        }
+        
+        let panel = UIStoryboard.instantiatePanel(identifier: "BottomPanel")
+        let panelConfiguration = PanelConfiguration(size: .thirdQuarter)
+        
+        // To present the panel
+        panelManager.show(panel: panel, config: panelConfiguration)
     }
 }
 
@@ -164,8 +158,6 @@ private extension MainViewController {
         
         // init rotate animation
         statesContainer.transform = CGAffineTransform(rotationAngle: CGFloat(0 * Double.pi / 180))
-
-        presenter?.setupReportContainer(reportContainer)
         
         currentStateBorderView.layer.borderColor = UIColor.red.cgColor
         currentStateBorderView.layer.borderWidth = 5
@@ -178,26 +170,3 @@ private extension MainViewController {
         presenter?.setupStateContainer(leftStateContainer, state: .bathing, side: nil)
     }
 }
-
-// MARK: UIViewControllerTransitioningDelegate
-extension MainViewController: UIViewControllerTransitioningDelegate {
-    
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        transition.transitionMode = .present
-        transition.startingPoint = reportContainer.center
-        transition.bubbleColor = presented.view.backgroundColor!
-        
-        return transition
-    }
-    
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        transition.transitionMode = .dismiss
-        transition.startingPoint = reportContainer.center
-        transition.bubbleColor = dismissed.view.backgroundColor!
-        
-        return transition
-    }
-}
-

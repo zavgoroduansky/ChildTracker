@@ -21,13 +21,6 @@ class ReportViewControllerPresenter: NSObject {
 // MARK: Public
 extension ReportViewControllerPresenter {
     
-    func setupCloseContainer(_ container: DetailButton) {
-        
-        container.initButtonWith(tag: 0, title: "X") { [unowned self] (sender) in
-            self.viewController?.dismiss(animated: true, completion: nil)
-        }
-    }
-    
     func setupSegmentedControl(_ container: SegmentedView) {
         
         container.setupView(dataSource: self, delegate: self)
