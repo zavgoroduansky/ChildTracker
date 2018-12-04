@@ -20,6 +20,12 @@ class MainViewController: BaseViewController {
         }
     }
     lazy var panelManager = Panels(target: self)
+    var bottomPanel: BottomPanelViewController {
+        let controller = UIStoryboard.instantiatePanel(identifier: "BottomPanel") as! BottomPanelViewController
+        controller.delegate = self
+        return controller
+    }
+    
     
     // MARK: UI
     @IBOutlet weak var locationSegmentedContainer: SegmentedView!
@@ -37,11 +43,11 @@ class MainViewController: BaseViewController {
         setupViewElements()
         showFirstLaunchPageControl()
         
-        let panel = UIStoryboard.instantiatePanel(identifier: "BottomPanel")
-        let panelConfiguration = PanelConfiguration(size: .thirdQuarter)
+        var panelConfiguration = PanelConfiguration(size: .thirdQuarter)
+        panelConfiguration.useSafeArea = true
         
         // To present the panel
-        panelManager.show(panel: panel, config: panelConfiguration)
+        panelManager.show(panel: bottomPanel, config: panelConfiguration)
     }
 }
 
@@ -168,5 +174,16 @@ private extension MainViewController {
         presenter?.setupStateContainer(rightStateContainer, state: .sleep, side: nil)
         presenter?.setupStateContainer(bottomStateContainer, state: .feeding, side: nil)
         presenter?.setupStateContainer(leftStateContainer, state: .bathing, side: nil)
+    }
+}
+
+extension MainViewController: BottomPanelViewControllerDelegate {
+    
+    var buttonsActionIsAvailable: Bool {
+        return panelManager.isExpanded
+    }
+    
+    func openBottomPanel() {
+        panelManager.expandPanel()
     }
 }

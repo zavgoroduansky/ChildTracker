@@ -33,3 +33,10 @@ private extension ReportViewController {
         presenter?.setupTableView(mainTableView)
     }
 }
+
+extension ReportViewController: PageViewControllersProtocol {
+    
+    var orderNumber: Int {
+        return 0
+    }
+}

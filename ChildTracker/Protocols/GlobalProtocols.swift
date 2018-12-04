@@ -8,9 +8,13 @@
 
 import Foundation
 
-protocol IntroPageViewControllersProtocol {
+protocol PageViewControllersProtocol {
     
     var orderNumber: Int { get }
+}
+
+protocol IntroPageViewControllersProtocol: PageViewControllersProtocol {
+    
     var completed: Bool { get }
 }
 

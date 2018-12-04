@@ -11,9 +11,15 @@ import UIKit
 class Router {
     
     static func introPageViewControllers() -> [UIViewController & IntroPageViewControllersProtocol] {
-        return [viewControllerWith(name: "GreetingViewController") as! UIViewController & IntroPageViewControllersProtocol,
-                viewControllerWith(name: "InitialViewController") as! UIViewController & IntroPageViewControllersProtocol,
-                viewControllerWith(name: "InfoViewController") as! UIViewController & IntroPageViewControllersProtocol]
+        return [viewControllerWith(name: "GreetingViewController", in: "Main") as! UIViewController & IntroPageViewControllersProtocol,
+                viewControllerWith(name: "InitialViewController", in: "Main") as! UIViewController & IntroPageViewControllersProtocol,
+                viewControllerWith(name: "InfoViewController", in: "Main") as! UIViewController & IntroPageViewControllersProtocol]
+    }
+    
+    static func bottomPageViewControllers() -> [UIViewController & PageViewControllersProtocol] {
+        return [prepareReportViewController(),
+                prepareAdditionalViewController(),
+                prepareMoreViewController()]
     }
     
     static func prepareMainViewController(_ controller: MainViewController) {
@@ -29,7 +35,9 @@ class Router {
         controller.presenter = presenter
     }
     
-    static func prepareReportViewController(_ controller: ReportViewController) {
+    static func prepareReportViewController() -> (UIViewController & PageViewControllersProtocol) {
+        
+        let controller = viewControllerWith(name: "ReportViewController", in: "BottomPanel") as! ReportViewController
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -40,12 +48,33 @@ class Router {
         presenter.reportManager = reportManager
         
         controller.presenter = presenter
+        
+        return controller as UIViewController & PageViewControllersProtocol
+    }
+    
+    static func prepareAdditionalViewController() -> (UIViewController & PageViewControllersProtocol) {
+        
+        let controller = viewControllerWith(name: "AdditionalViewController", in: "BottomPanel") as! AdditionalViewController
+        
+        let presenter = AdditionalViewControllerPresenter()
+        presenter.viewController = controller
+        
+        controller.presenter = presenter
+        
+        return controller as UIViewController & PageViewControllersProtocol
+    }
+    
+    static func prepareMoreViewController() -> (UIViewController & PageViewControllersProtocol) {
+        
+        let controller = viewControllerWith(name: "MoreViewController", in: "BottomPanel") as! MoreViewController
+        
+        return controller as UIViewController & PageViewControllersProtocol
     }
 }
 
 private extension Router {
     
-    static func viewControllerWith(name: String) -> UIViewController {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: name)
+    static func viewControllerWith(name: String, in storyboardName: String) -> UIViewController {
+        return UIStoryboard(name: storyboardName, bundle: nil).instantiateViewController(withIdentifier: name)
     }
 }
