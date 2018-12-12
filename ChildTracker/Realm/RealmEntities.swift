@@ -122,3 +122,35 @@ class DBStateTrackerLine: Object {
         self.side  = side
     }
 }
+
+class DBDeficationType: Object {
+    
+    @objc dynamic var id = 0    // for connection to enum
+    @objc dynamic var name = "" // from enum
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    convenience init(type: DeficationType) {
+        self.init()
+        
+        id      = type.rawValue
+        name    = type.title()
+    }
+}
+
+class DBDeficationTracker: Object {
+
+    @objc dynamic var type: DBDeficationType?
+    @objc dynamic var date = Date()
+    @objc dynamic var comment: String?
+
+    convenience init(type: DBDeficationType, startDate: Date, comment: String?) {
+        self.init()
+
+        self.type       = type
+        self.date       = startDate
+        self.comment    = comment
+    }
+}

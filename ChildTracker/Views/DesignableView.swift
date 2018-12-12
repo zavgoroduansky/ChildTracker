@@ -32,8 +32,4 @@ class DesignableView: UIView {
     func setup() {
         // need to override
     }
-    
-    func rotateToAngle(_ angle: CGFloat) {
-        contentView.transform = contentView.transform.rotated(by: angle)
-    }
 }

@@ -70,6 +70,19 @@ class Router {
         
         return controller as UIViewController & PageViewControllersProtocol
     }
+    
+    static func prepareAddNewActionViewController() -> AddNewActionViewController {
+        
+        let controller = viewControllerWith(name: "AddNewActionViewController", in: "BottomPanel") as! AddNewActionViewController
+        controller.modalPresentationStyle = .overCurrentContext
+        
+        let presenter = AddNewActionViewControllerPresenter()
+        presenter.viewController = controller
+        
+        controller.presenter = presenter
+        
+        return controller
+    }
 }
 
 private extension Router {

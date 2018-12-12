@@ -20,10 +20,14 @@
 		2F1AB93821AD9A820017610B /* Panels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1AB93621AD9A810017610B /* Panels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F1AB93B21AD9D4C0017610B /* BottomPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1AB93921AD9D4C0017610B /* BottomPanelViewController.swift */; };
 		2F1AB93E21AD9EA30017610B /* BottomPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F1AB93D21AD9EA30017610B /* BottomPanel.storyboard */; };
+		2F1B9B7521BFF0A9006C79E4 /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1B9B7421BFF0A9006C79E4 /* SimpleButton.swift */; };
+		2F1B9B7721C113AE006C79E4 /* AddNewActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1B9B7621C113AE006C79E4 /* AddNewActionViewController.swift */; };
+		2F1B9B7921C137E5006C79E4 /* DetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1B9B7821C137E5006C79E4 /* DetailInfoView.swift */; };
+		2F1B9B7B21C137FF006C79E4 /* DetailInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F1B9B7A21C137FF006C79E4 /* DetailInfoView.xib */; };
+		2F1B9B7D21C14F27006C79E4 /* AddNewActionViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1B9B7C21C14F27006C79E4 /* AddNewActionViewControllerPresenter.swift */; };
 		2F3524E021B55C1C0038585C /* BottomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3524DF21B55C1C0038585C /* BottomPageViewController.swift */; };
 		2F3524E621B55FF10038585C /* AdditionalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3524E521B55FF10038585C /* AdditionalViewController.swift */; };
 		2F3524E821B55FFA0038585C /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3524E721B55FFA0038585C /* MoreViewController.swift */; };
-		2F7A77FC21B69D470054A32A /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A77FB21B69D470054A32A /* SimpleButton.swift */; };
 		2F7A77FE21B6A2170054A32A /* UIImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A77FD21B6A2170054A32A /* UIImageHelper.swift */; };
 		2F7A780021B6C3010054A32A /* AdditionalViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A77FF21B6C3010054A32A /* AdditionalViewControllerPresenter.swift */; };
 		2F98FBC8219ABB1500EB3179 /* SegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F98FBC7219ABB1500EB3179 /* SegmentedView.swift */; };
@@ -114,10 +118,14 @@
 		2F1AB93621AD9A810017610B /* Panels.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Panels.framework; path = Carthage/Build/iOS/Panels.framework; sourceTree = "<group>"; };
 		2F1AB93921AD9D4C0017610B /* BottomPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPanelViewController.swift; sourceTree = "<group>"; };
 		2F1AB93D21AD9EA30017610B /* BottomPanel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BottomPanel.storyboard; sourceTree = "<group>"; };
+		2F1B9B7421BFF0A9006C79E4 /* SimpleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleButton.swift; sourceTree = "<group>"; };
+		2F1B9B7621C113AE006C79E4 /* AddNewActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActionViewController.swift; sourceTree = "<group>"; };
+		2F1B9B7821C137E5006C79E4 /* DetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoView.swift; sourceTree = "<group>"; };
+		2F1B9B7A21C137FF006C79E4 /* DetailInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailInfoView.xib; sourceTree = "<group>"; };
+		2F1B9B7C21C14F27006C79E4 /* AddNewActionViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActionViewControllerPresenter.swift; sourceTree = "<group>"; };
 		2F3524DF21B55C1C0038585C /* BottomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPageViewController.swift; sourceTree = "<group>"; };
 		2F3524E521B55FF10038585C /* AdditionalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalViewController.swift; sourceTree = "<group>"; };
 		2F3524E721B55FFA0038585C /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
-		2F7A77FB21B69D470054A32A /* SimpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButton.swift; sourceTree = "<group>"; };
 		2F7A77FD21B6A2170054A32A /* UIImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageHelper.swift; sourceTree = "<group>"; };
 		2F7A77FF21B6C3010054A32A /* AdditionalViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalViewControllerPresenter.swift; sourceTree = "<group>"; };
 		2F98FBC7219ABB1500EB3179 /* SegmentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedView.swift; sourceTree = "<group>"; };
@@ -205,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				2F3524DF21B55C1C0038585C /* BottomPageViewController.swift */,
+				2F1B9B7621C113AE006C79E4 /* AddNewActionViewController.swift */,
 				2F7A77FA21B665C80054A32A /* Pages */,
 			);
 			path = BottomPage;
@@ -214,9 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				2F98FBE0219EC9FF00EB3179 /* ReportViewController.swift */,
-				2F98FBE8219EE82200EB3179 /* ReportViewControllerPresenter.swift */,
 				2F3524E521B55FF10038585C /* AdditionalViewController.swift */,
-				2F7A77FF21B6C3010054A32A /* AdditionalViewControllerPresenter.swift */,
 				2F3524E721B55FFA0038585C /* MoreViewController.swift */,
 			);
 			path = Pages;
@@ -226,6 +233,9 @@
 			isa = PBXGroup;
 			children = (
 				2F98FBCC219AC41900EB3179 /* MainViewControllerPresenter.swift */,
+				2F98FBE8219EE82200EB3179 /* ReportViewControllerPresenter.swift */,
+				2F7A77FF21B6C3010054A32A /* AdditionalViewControllerPresenter.swift */,
+				2F1B9B7C21C14F27006C79E4 /* AddNewActionViewControllerPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -362,6 +372,8 @@
 				2FCFEB93219342EF0052F1A0 /* Buttons */,
 				2F98FBC7219ABB1500EB3179 /* SegmentedView.swift */,
 				2F98FBC9219ABB1F00EB3179 /* SegmentedView.xib */,
+				2F1B9B7821C137E5006C79E4 /* DetailInfoView.swift */,
+				2F1B9B7A21C137FF006C79E4 /* DetailInfoView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -369,7 +381,7 @@
 		2FCFEB93219342EF0052F1A0 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				2F7A77FB21B69D470054A32A /* SimpleButton.swift */,
+				2F1B9B7421BFF0A9006C79E4 /* SimpleButton.swift */,
 				2F0E78B22195DB8A00585947 /* DesignableButton.swift */,
 				2FCFEB942193430B0052F1A0 /* NormalButton.swift */,
 				2FCFEB96219343180052F1A0 /* NormalButton.xib */,
@@ -521,6 +533,7 @@
 				2F0E78AF2195D87200585947 /* StateButton.xib in Resources */,
 				2FCFEB5721930F6B0052F1A0 /* Assets.xcassets in Resources */,
 				2FCFEB97219343180052F1A0 /* NormalButton.xib in Resources */,
+				2F1B9B7B21C137FF006C79E4 /* DetailInfoView.xib in Resources */,
 				2FCFEB5521930F6A0052F1A0 /* Main.storyboard in Resources */,
 				2F1AB93E21AD9EA30017610B /* BottomPanel.storyboard in Resources */,
 			);
@@ -557,12 +570,13 @@
 				2FCFEB9C219448490052F1A0 /* MainViewController.swift in Sources */,
 				2FCFEB5221930F6A0052F1A0 /* GreetingViewController.swift in Sources */,
 				2FCFEB5021930F6A0052F1A0 /* AppDelegate.swift in Sources */,
+				2F1B9B7521BFF0A9006C79E4 /* SimpleButton.swift in Sources */,
 				2F3524E021B55C1C0038585C /* BottomPageViewController.swift in Sources */,
 				2F98FBE1219EC9FF00EB3179 /* ReportViewController.swift in Sources */,
 				2FCFEB8A2193176E0052F1A0 /* Router.swift in Sources */,
 				2FCFEBA6219457300052F1A0 /* UIViewHelper.swift in Sources */,
-				2F7A77FC21B69D470054A32A /* SimpleButton.swift in Sources */,
 				2F98FBE5219EE09B00EB3179 /* UIColorHelper.swift in Sources */,
+				2F1B9B7721C113AE006C79E4 /* AddNewActionViewController.swift in Sources */,
 				2FCFEB9F21944A280052F1A0 /* UIButtonHelper.swift in Sources */,
 				2FCFEB86219314960052F1A0 /* InitialViewController.swift in Sources */,
 				2F0E789D2194621F00585947 /* UITextFieldHandler.swift in Sources */,
@@ -578,11 +592,13 @@
 				2F3524E821B55FFA0038585C /* MoreViewController.swift in Sources */,
 				2FCFEB84219314860052F1A0 /* InfoViewController.swift in Sources */,
 				2FCFEBA421944C9B0052F1A0 /* Entity.swift in Sources */,
+				2F1B9B7D21C14F27006C79E4 /* AddNewActionViewControllerPresenter.swift in Sources */,
 				2F98FBE9219EE82200EB3179 /* ReportViewControllerPresenter.swift in Sources */,
 				2F7A77FE21B6A2170054A32A /* UIImageHelper.swift in Sources */,
 				2F1AB93B21AD9D4C0017610B /* BottomPanelViewController.swift in Sources */,
 				2F98FBCF219AFFA900EB3179 /* FormatManager.swift in Sources */,
 				2F0E78A2219493AC00585947 /* ChildManager.swift in Sources */,
+				2F1B9B7921C137E5006C79E4 /* DetailInfoView.swift in Sources */,
 				2F98FBD8219B104700EB3179 /* RealmEntities.swift in Sources */,
 				2FCFEB952193430B0052F1A0 /* NormalButton.swift in Sources */,
 				2F3524E621B55FF10038585C /* AdditionalViewController.swift in Sources */,

@@ -47,6 +47,16 @@ class DataManager {
         
         return RealmManager.setupConditionTypes(conditionTypes)
     }
+    
+    func setupDeficationTypes() -> Bool {
+        
+        var deficationTypes = [DBDeficationType]()
+        deficationTypes.append(DBDeficationType(type: .wet))
+        deficationTypes.append(DBDeficationType(type: .dirty))
+        deficationTypes.append(DBDeficationType(type: .mixed))
+        
+        return RealmManager.setupDeficationTypes(deficationTypes)
+    }
 }
 
 // MARK: Location
@@ -213,6 +223,22 @@ extension DataManager {
             }
             completion(answer)
         }
+    }
+}
+
+// MARK: Actions
+extension DataManager {
+    
+    static func addNewAction(defication: DeficationType, date: Date, comment: String?, completion: @escaping (Bool) -> Void) {
+        
+        RealmManager.trackNewAction(deficationType: DBDeficationType(type: defication), date: date, comment: comment) { (success) in
+            completion(success)
+        }
+    }
+    
+    static func lastAction(defication: DeficationType, date: Date?, completion: @escaping (Bool) -> Void) {
+        
+        // need to fetch last defication for type
     }
 }
 

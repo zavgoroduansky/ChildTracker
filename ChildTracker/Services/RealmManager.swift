@@ -33,6 +33,10 @@ extension RealmManager {
     static func setupConditionTypes(_ types: [DBCondition]) -> Bool {
         return updateTypesArray(types)
     }
+    
+    static func setupDeficationTypes(_ types: [DBDeficationType]) -> Bool {
+        return updateTypesArray(types)
+    }
 }
 
 // MARK: location
@@ -249,6 +253,23 @@ extension RealmManager {
                 }
             }
             completion(resultDictionary)
+        }
+    }
+}
+
+// MARK: Actions
+extension RealmManager {
+    
+    static func trackNewAction(deficationType: DBDeficationType, date: Date, comment: String?, completion: @escaping (Bool) -> Void) {
+        
+        realmQueue.async {
+            let realm = try! Realm()
+            if let realmDeficationType = realm.object(ofType: DBDeficationType.self, forPrimaryKey: deficationType.id) {
+                try! realm.write {
+                    realm.create(DBDeficationTracker.self, value: DBDeficationTracker(type: realmDeficationType, startDate: date, comment: comment), update: false)
+                }
+            }
+            completion(true)
         }
     }
 }

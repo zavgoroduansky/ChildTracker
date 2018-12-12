@@ -180,3 +180,24 @@ enum State: Int {
 }
 
 extension State: CaseIterable {}
+
+// available type of defication
+enum DeficationType: Int {
+    
+    case wet = 0
+    case dirty
+    case mixed
+    
+    func title() -> String {
+        switch self {
+        case .wet:
+            return "Wet"
+        case .dirty:
+            return "Dirty"
+        case .mixed:
+            return "Mixed"
+        }
+    }
+}
+
+extension DeficationType: CaseIterable {}

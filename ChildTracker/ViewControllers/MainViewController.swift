@@ -123,16 +123,16 @@ private extension MainViewController {
             UIView.animate(withDuration: 1, animations: { [unowned self] in
                 let angle = self.calculateRotationAngleFor(stateLine.state)
                 self.statesContainer.transform = self.statesContainer.transform.rotated(by: angle)
-                self.topStateContainer.rotateToAngle(-angle)
+                self.rotateView(self.topStateContainer.contentView, toAngle: -angle)//rotateToAngle(-angle)
                 self.topStateContainer.setTimerText("")
                 self.topStateContainer.setPlayPauseImageViewTo(.finished)
-                self.leftStateContainer.rotateToAngle(-angle)
+                self.rotateView(self.leftStateContainer.contentView, toAngle: -angle)//rotateToAngle(-angle)
                 self.leftStateContainer.setTimerText("")
                 self.leftStateContainer.setPlayPauseImageViewTo(.finished)
-                self.rightStateContainer.rotateToAngle(-angle)
+                self.rotateView(self.rightStateContainer.contentView, toAngle: -angle)//rotateToAngle(-angle)
                 self.rightStateContainer.setTimerText("")
                 self.rightStateContainer.setPlayPauseImageViewTo(.finished)
-                self.bottomStateContainer.rotateToAngle(-angle)
+                self.rotateView(self.bottomStateContainer.contentView, toAngle: -angle)//rotateToAngle(-angle)
                 self.bottomStateContainer.setTimerText("")
                 self.bottomStateContainer.setPlayPauseImageViewTo(.finished)
                 
@@ -187,3 +187,5 @@ extension MainViewController: BottomPanelViewControllerDelegate {
         panelManager.expandPanel()
     }
 }
+
+extension MainViewController: RotatableView { }

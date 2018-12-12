@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PageViewControllersProtocol {
     
@@ -22,5 +23,17 @@ extension IntroPageViewControllersProtocol {
     
     var completed: Bool {
         return true
+    }
+}
+
+protocol RotatableView {
+    
+    func rotateView(_ view: UIView, toAngle: CGFloat)
+}
+
+extension RotatableView {
+    
+    func rotateView(_ view: UIView, toAngle: CGFloat) {
+        view.transform = view.transform.rotated(by: toAngle)
     }
 }

@@ -13,11 +13,25 @@ class AdditionalViewController: BaseViewController {
     // MARK: Properties
     public var presenter: AdditionalViewControllerPresenter?
     
+    // MARK: UI
+    @IBOutlet weak var tableView: UITableView!
+    @IBAction func addButtonAction(_ sender: UIButton) {
+        
+    }
+    
     // MARK: Lifecircle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupViewElements()
+    }
+}
+
+private extension AdditionalViewController {
+    
+    func setupViewElements() {
+        
+        presenter?.setupTableView(tableView)
     }
 }
 

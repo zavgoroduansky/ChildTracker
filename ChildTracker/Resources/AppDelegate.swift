@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = dataManager.setupStateTypes()
         _ = dataManager.setupSideTypes()
         _ = dataManager.setupConditionTypes()
+        _ = dataManager.setupDeficationTypes()
         
         // setup start controller
         if let navigationController = window?.rootViewController as? UINavigationController {
