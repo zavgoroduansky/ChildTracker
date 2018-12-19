@@ -45,8 +45,9 @@ extension AdditionalViewControllerPresenter: UITableViewDelegate {
         
         switch indexPath.section {
         case 0:
-            let selectedDeficationType = DeficationType.init(rawValue: indexPath.row)
-            viewController?.showDetailViewController(Router.prepareAddNewActionViewController(), sender: self)
+            if let selectedDeficationType = DeficationType.init(rawValue: indexPath.row) {
+                viewController?.showDetailViewController(Router.prepareAddNewDeficationViewController(activity: selectedDeficationType), sender: self)
+            }
         case 1:
             break
         case 2:

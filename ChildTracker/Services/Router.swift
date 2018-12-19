@@ -71,15 +71,16 @@ class Router {
         return controller as UIViewController & PageViewControllersProtocol
     }
     
-    static func prepareAddNewActionViewController() -> AddNewActionViewController {
+    static func prepareAddNewDeficationViewController(activity: DeficationType) -> AddNewActionViewController {
         
-        let controller = viewControllerWith(name: "AddNewActionViewController", in: "BottomPanel") as! AddNewActionViewController
+        let controller = AddNewDeficationViewController()
         controller.modalPresentationStyle = .overCurrentContext
         
-        let presenter = AddNewActionViewControllerPresenter()
+        let presenter = AddNewDeficationViewControllerPresenter()
         presenter.viewController = controller
         
         controller.presenter = presenter
+        controller.actionTitle = activity.title()
         
         return controller
     }
