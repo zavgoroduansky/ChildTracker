@@ -46,7 +46,11 @@ extension AdditionalViewControllerPresenter: UITableViewDelegate {
         switch indexPath.section {
         case 0:
             if let selectedDeficationType = DeficationType.init(rawValue: indexPath.row) {
+                // need to close panel now. tommorow start from this place
                 viewController?.showDetailViewController(Router.prepareAddNewDeficationViewController(activity: selectedDeficationType), sender: self)
+                if let pageViewController = viewController?.parent as? BottomPageViewController {
+                    pageViewController.container?.closeBottomPanel()
+                }
             }
         case 1:
             break

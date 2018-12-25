@@ -14,6 +14,7 @@ protocol BottomPanelViewControllerDelegate: AnyObject {
     var buttonsActionIsAvailable: Bool { get }
     
     func openBottomPanel()
+    func closeBottomPanel()
 }
 
 class BottomPanelViewController: UIViewController, Panelable {
@@ -100,5 +101,9 @@ extension BottomPanelViewController: BottomPageViewControllerDelegate {
             turnOffButtonsSelection()
             button.isSelected = !button.isSelected
         }
+    }
+    
+    func closeBottomPanel() {
+        delegate?.closeBottomPanel()
     }
 }

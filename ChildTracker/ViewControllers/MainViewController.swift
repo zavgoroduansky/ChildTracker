@@ -43,7 +43,7 @@ class MainViewController: BaseViewController {
         setupViewElements()
         showFirstLaunchPageControl()
         
-        var panelConfiguration = PanelConfiguration(size: .thirdQuarter)
+        var panelConfiguration = PanelConfiguration(size: .fullScreen)
         panelConfiguration.useSafeArea = true
         
         // To present the panel
@@ -185,6 +185,10 @@ extension MainViewController: BottomPanelViewControllerDelegate {
     
     func openBottomPanel() {
         panelManager.expandPanel()
+    }
+    
+    func closeBottomPanel() {
+        panelManager.collapsePanel()
     }
 }
 

@@ -10,6 +10,7 @@ import UIKit
 
 class AddNewDeficationViewController: AddNewActionViewController {
     
+    // MARK: Lifecircle
     override func viewDidLoad() {
         super.viewDidLoad()
 

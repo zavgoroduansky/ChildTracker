@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ButtonsView" customModule="ChildTracker" customModuleProvider="target">
+            <connections>
+                <outlet property="leftButton" destination="O60-Am-Ahp" id="iSq-Oh-aOE"/>
+                <outlet property="rightButton" destination="mnR-ZD-xdf" id="wtj-4d-oc4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O60-Am-Ahp" customClass="ActionButton" customModule="ChildTracker" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="172.5" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnR-ZD-xdf" customClass="ActionButton" customModule="ChildTracker" customModuleProvider="target">
+                    <rect key="frame" x="202.5" y="0.0" width="172.5" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="mnR-ZD-xdf" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="7ag-02-i37"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="O60-Am-Ahp" secondAttribute="bottom" id="DJv-Jq-17Y"/>
+                <constraint firstItem="O60-Am-Ahp" firstAttribute="width" secondItem="mnR-ZD-xdf" secondAttribute="width" id="PCB-2U-GLM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mnR-ZD-xdf" secondAttribute="bottom" id="ckm-hK-nDA"/>
+                <constraint firstItem="mnR-ZD-xdf" firstAttribute="leading" secondItem="O60-Am-Ahp" secondAttribute="trailing" constant="30" id="ibM-Ts-Sm3"/>
+                <constraint firstItem="O60-Am-Ahp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="t54-8w-Bag"/>
+                <constraint firstItem="O60-Am-Ahp" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="uzk-ba-El6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mnR-ZD-xdf" secondAttribute="trailing" id="x5x-Co-FgF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="39.200000000000003" y="46.776611694152926"/>
+        </view>
+    </objects>
+</document>

@@ -11,6 +11,7 @@ import UIKit
 protocol BottomPageViewControllerDelegate: AnyObject {
     
     func setSection(withIndex: Int)
+    func closeBottomPanel()
 }
 
 class BottomPageViewController: UIPageViewController {

@@ -57,6 +57,12 @@
 		2F98FBE9219EE82200EB3179 /* ReportViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F98FBE8219EE82200EB3179 /* ReportViewControllerPresenter.swift */; };
 		2F98FBEB219EF71100EB3179 /* ReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F98FBEA219EF71100EB3179 /* ReportManager.swift */; };
 		2F98FBFC21A82E5800EB3179 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F98FBFB21A82E5800EB3179 /* DateHelper.swift */; };
+		2FA0658821D11212006A9543 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0658721D11212006A9543 /* TitleView.swift */; };
+		2FA0658A21D11243006A9543 /* TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0658921D11243006A9543 /* TitleView.xib */; };
+		2FA0658C21D11B1D006A9543 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0658B21D11B1D006A9543 /* ButtonsView.swift */; };
+		2FA0658E21D11B30006A9543 /* ButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0658D21D11B30006A9543 /* ButtonsView.xib */; };
+		2FA0659021D11B89006A9543 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0658F21D11B89006A9543 /* ActionButton.swift */; };
+		2FA0659221D11BF6006A9543 /* ActionButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0659121D11BF6006A9543 /* ActionButton.xib */; };
 		2FCFEB5021930F6A0052F1A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFEB4F21930F6A0052F1A0 /* AppDelegate.swift */; };
 		2FCFEB5221930F6A0052F1A0 /* GreetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFEB5121930F6A0052F1A0 /* GreetingViewController.swift */; };
 		2FCFEB5521930F6A0052F1A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FCFEB5321930F6A0052F1A0 /* Main.storyboard */; };
@@ -165,6 +171,12 @@
 		2F98FBE8219EE82200EB3179 /* ReportViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewControllerPresenter.swift; sourceTree = "<group>"; };
 		2F98FBEA219EF71100EB3179 /* ReportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportManager.swift; sourceTree = "<group>"; };
 		2F98FBFB21A82E5800EB3179 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		2FA0658721D11212006A9543 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		2FA0658921D11243006A9543 /* TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleView.xib; sourceTree = "<group>"; };
+		2FA0658B21D11B1D006A9543 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
+		2FA0658D21D11B30006A9543 /* ButtonsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonsView.xib; sourceTree = "<group>"; };
+		2FA0658F21D11B89006A9543 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		2FA0659121D11BF6006A9543 /* ActionButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionButton.xib; sourceTree = "<group>"; };
 		2FCFEB4C21930F6A0052F1A0 /* ChildTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChildTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FCFEB4F21930F6A0052F1A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FCFEB5121930F6A0052F1A0 /* GreetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingViewController.swift; sourceTree = "<group>"; };
@@ -456,6 +468,10 @@
 				2F98FBC9219ABB1F00EB3179 /* SegmentedView.xib */,
 				2FCFEB93219342EF0052F1A0 /* Buttons */,
 				2F1B9B7E21C1573C006C79E4 /* TableViewCells */,
+				2FA0658721D11212006A9543 /* TitleView.swift */,
+				2FA0658921D11243006A9543 /* TitleView.xib */,
+				2FA0658B21D11B1D006A9543 /* ButtonsView.swift */,
+				2FA0658D21D11B30006A9543 /* ButtonsView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -469,6 +485,8 @@
 				2FCFEB96219343180052F1A0 /* NormalButton.xib */,
 				2F0E78A72195D7A000585947 /* StateButton.swift */,
 				2F0E78AE2195D87100585947 /* StateButton.xib */,
+				2FA0658F21D11B89006A9543 /* ActionButton.swift */,
+				2FA0659121D11BF6006A9543 /* ActionButton.xib */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -617,10 +635,13 @@
 				2F0E78AF2195D87200585947 /* StateButton.xib in Resources */,
 				2F1B9B8221C157FC006C79E4 /* ValuePickerTableViewCell.xib in Resources */,
 				2FCFEB5721930F6B0052F1A0 /* Assets.xcassets in Resources */,
+				2FA0659221D11BF6006A9543 /* ActionButton.xib in Resources */,
 				2FCFEB97219343180052F1A0 /* NormalButton.xib in Resources */,
+				2FA0658E21D11B30006A9543 /* ButtonsView.xib in Resources */,
 				2FCFEB5521930F6A0052F1A0 /* Main.storyboard in Resources */,
 				2F1B9BA221C2A06A006C79E4 /* BasicOpenableTableViewCell.xib in Resources */,
 				2F1AB93E21AD9EA30017610B /* BottomPanel.storyboard in Resources */,
+				2FA0658A21D11243006A9543 /* TitleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +677,7 @@
 				2F1B9B8921C16009006C79E4 /* TextViewTableViewCell.swift in Sources */,
 				2FCFEB9C219448490052F1A0 /* MainViewController.swift in Sources */,
 				2FCFEB5221930F6A0052F1A0 /* GreetingViewController.swift in Sources */,
+				2FA0658821D11212006A9543 /* TitleView.swift in Sources */,
 				2FCFEB5021930F6A0052F1A0 /* AppDelegate.swift in Sources */,
 				2F1B9B7521BFF0A9006C79E4 /* SimpleButton.swift in Sources */,
 				2F3524E021B55C1C0038585C /* BottomPageViewController.swift in Sources */,
@@ -665,6 +687,7 @@
 				2F1B9B9021C250F0006C79E4 /* AddNewTemperatureViewController.swift in Sources */,
 				2F98FBE5219EE09B00EB3179 /* UIColorHelper.swift in Sources */,
 				2F1B9B7721C113AE006C79E4 /* AddNewActionViewController.swift in Sources */,
+				2FA0658C21D11B1D006A9543 /* ButtonsView.swift in Sources */,
 				2FCFEB9F21944A280052F1A0 /* UIButtonHelper.swift in Sources */,
 				2FCFEB86219314960052F1A0 /* InitialViewController.swift in Sources */,
 				2F0E789D2194621F00585947 /* UITextFieldHandler.swift in Sources */,
@@ -684,6 +707,7 @@
 				2F1B9B7D21C14F27006C79E4 /* AddNewActionViewControllerPresenter.swift in Sources */,
 				2F98FBE9219EE82200EB3179 /* ReportViewControllerPresenter.swift in Sources */,
 				2F7A77FE21B6A2170054A32A /* UIImageHelper.swift in Sources */,
+				2FA0659021D11B89006A9543 /* ActionButton.swift in Sources */,
 				2F1AB93B21AD9D4C0017610B /* BottomPanelViewController.swift in Sources */,
 				2F98FBCF219AFFA900EB3179 /* FormatManager.swift in Sources */,
 				2F1B9B9221C250FD006C79E4 /* AddNewCustomViewController.swift in Sources */,

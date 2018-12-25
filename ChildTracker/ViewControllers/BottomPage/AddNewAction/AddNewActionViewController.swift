@@ -16,15 +16,22 @@ class AddNewActionViewController: BaseViewController {
     public var actionTitle: String?
     
     // MARK: UI
-    private var mainContainerView: UIView  = UIView(frame: CGRect.zero)
-    private let titleLabel: UILabel = UILabel(frame: CGRect.zero)
+    private let mainContainerView: UIView = UIView(frame: CGRect.zero)
+    private let titleView: TitleView = TitleView(frame: CGRect.zero)
     private let tableView: UITableView! = UITableView(frame: CGRect.zero)
+    private let buttonView: ButtonsView = ButtonsView(frame: CGRect.zero)
     
     // MARK: Lifecircle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupViewElements()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        presenter?.setFirstResponder(tableView)
     }
 }
 
@@ -38,15 +45,14 @@ private extension AddNewActionViewController {
         
         view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         
-        titleLabel.textColor = UIColor.red
-        titleLabel.text = actionTitle
-        titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .bold)
-        titleLabel.textAlignment = .center
-        
         tableView.isScrollEnabled = false
         tableView.isUserInteractionEnabled = true
         tableView.allowsSelection = true
         tableView.allowsMultipleSelection = false
+        
+        tableView.tableFooterView = UIView()
+        
+        titleView.titleLabel.text = actionTitle
         
         mainContainerView.backgroundColor = UIColor.white
         mainContainerView.layer.cornerRadius = 10
@@ -54,13 +60,16 @@ private extension AddNewActionViewController {
         
         addGestureRecognizer()
         
-        view.addSubview(titleLabel)
         view.addSubview(mainContainerView)
+        mainContainerView.addSubview(titleView)
         mainContainerView.addSubview(tableView)
+        
+        view.addSubview(buttonView)
         
         setupConstraints()
         
         presenter?.setupTableView(tableView)
+        presenter?.setupButtonsPart(buttonView)
     }
     
     func addGestureRecognizer() {
@@ -73,20 +82,29 @@ private extension AddNewActionViewController {
     func setupConstraints() {
         
         mainContainerView.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(550)
-            make.left.equalToSuperview().offset(50)
-            make.right.bottom.equalToSuperview().offset(-50)
-        }
-        
-        titleLabel.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(UIScreen.main.bounds.height*0.5)
             make.left.equalToSuperview().offset(50)
             make.right.equalToSuperview().offset(-50)
-            make.bottom.equalTo(mainContainerView.snp.top).offset(-10)
+            make.centerY.equalToSuperview()
+        }
+        
+        titleView.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview()
             make.height.equalTo(50)
         }
         
         tableView.snp.makeConstraints { (make) -> Void in
-            make.left.top.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.top.equalTo(titleView.snp.bottom)
+            make.bottom.equalToSuperview()
+        }
+        
+        buttonView.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(50)
+            make.right.equalToSuperview().offset(-50)
+            make.height.equalTo(50)
+            make.top.equalTo(mainContainerView.snp.bottom).offset(20)
         }
     }
 }

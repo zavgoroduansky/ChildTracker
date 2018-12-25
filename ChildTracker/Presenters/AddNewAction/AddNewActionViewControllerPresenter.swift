@@ -35,6 +35,28 @@ extension AddNewActionViewControllerPresenter {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    func setupButtonsPart(_ buttonsView: ButtonsView) {
+        
+        buttonsView.leftButton.title = "Close"
+        buttonsView.leftButton.titleColor = UIColor.red
+        buttonsView.leftButton.initButtonWith(tag: 0) { [unowned self = self] (button) in
+            self.viewController?.dismiss(animated: true, completion: nil)
+        }
+        
+        buttonsView.rightButton.title = "Done"
+        buttonsView.rightButton.titleColor = UIColor.black
+        buttonsView.rightButton.initButtonWith(tag: 1) { [unowned self = self] (button) in
+            // need to save to db
+            self.viewController?.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func setFirstResponder(_ tableView: UITableView) {
+        
+        let commentCell = tableView.cellForRow(at: IndexPath(row: 1, section: 2)) as! TextViewTableViewCell
+        commentCell.textView.becomeFirstResponder()
+    }
 }
 
 // MARK: UITableViewDelegate
@@ -140,6 +162,7 @@ extension AddNewActionViewControllerPresenter: UITableViewDataSource {
                 
                 cell.titleLabel.text = "Comment:"
                 cell.valueLabel.text = ""
+                cell.stateImage.isHidden = true
                 
                 return cell
             } else {

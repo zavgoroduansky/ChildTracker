@@ -75,6 +75,7 @@ class Router {
         
         let controller = AddNewDeficationViewController()
         controller.modalPresentationStyle = .overCurrentContext
+        controller.modalTransitionStyle = .crossDissolve
         
         let presenter = AddNewDeficationViewControllerPresenter()
         presenter.viewController = controller
