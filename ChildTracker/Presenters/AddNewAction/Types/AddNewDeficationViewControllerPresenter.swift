@@ -11,7 +11,17 @@ import UIKit
 class AddNewDeficationViewControllerPresenter: AddNewActionViewControllerPresenter {
     
     // MARK: Properties
+    public var dataManager: DataManager?
     override public var showValueSection: Bool {
         return false
+    }
+    
+    // MARK: Override
+    override func saveNewAction() {
+        if let activityType = activity {
+            dataManager?.addNewDefication(activityType, date: newAction.date, comment: newAction.comment) { (success) in
+                
+            }
+        }
     }
 }

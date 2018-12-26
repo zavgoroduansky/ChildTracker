@@ -13,7 +13,6 @@ class AddNewActionViewController: BaseViewController {
 
     // MARK: Properties
     public var presenter: AddNewActionViewControllerPresenter?
-    public var actionTitle: String?
     
     // MARK: UI
     private let mainContainerView: UIView = UIView(frame: CGRect.zero)
@@ -31,7 +30,8 @@ class AddNewActionViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        presenter?.setFirstResponder(tableView)
+        // turn off now
+        //presenter?.setFirstResponder(tableView)
     }
 }
 
@@ -52,7 +52,7 @@ private extension AddNewActionViewController {
         
         tableView.tableFooterView = UIView()
         
-        titleView.titleLabel.text = actionTitle
+        titleView.titleLabel.text = presenter?.activity?.title()
         
         mainContainerView.backgroundColor = UIColor.white
         mainContainerView.layer.cornerRadius = 10

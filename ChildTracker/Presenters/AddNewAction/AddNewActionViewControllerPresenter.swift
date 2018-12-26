@@ -16,9 +16,15 @@ class AddNewActionViewControllerPresenter: NSObject {
         return false
     }
     
+    public var activity: DeficationType?
+    public var newAction: NewAction = NewAction()
+    
     private var showValuePicker = false
     private var showDatePicker = false
-    private var actionDate: Date = Date()
+    
+    func saveNewAction() {
+        // need to override
+    }
 }
 
 // MARK: Public
@@ -48,6 +54,7 @@ extension AddNewActionViewControllerPresenter {
         buttonsView.rightButton.titleColor = UIColor.black
         buttonsView.rightButton.initButtonWith(tag: 1) { [unowned self = self] (button) in
             // need to save to db
+            self.saveNewAction()
             self.viewController?.dismiss(animated: true, completion: nil)
         }
     }
@@ -143,14 +150,14 @@ extension AddNewActionViewControllerPresenter: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: BasicOpenableTableViewCell.identifier, for: indexPath) as! BasicOpenableTableViewCell
                 
                 cell.titleLabel.text = "Date:"
-                cell.valueLabel.text = actionDate.datePickerFormatString
+                cell.valueLabel.text = newAction.date.datePickerFormatString
                 
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: DatePickerTableViewCell.identifier, for: indexPath) as! DatePickerTableViewCell
                 
                 cell.valueChangedHandler = { [unowned self = self] sender in
-                    self.actionDate = sender.date
+                    self.newAction.date = sender.date
                     tableView.reloadRows(at: [IndexPath(row: 0, section: indexPath.section)], with: .automatic)
                 }
                 
@@ -161,12 +168,13 @@ extension AddNewActionViewControllerPresenter: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: BasicOpenableTableViewCell.identifier, for: indexPath) as! BasicOpenableTableViewCell
                 
                 cell.titleLabel.text = "Comment:"
-                cell.valueLabel.text = ""
+                cell.valueLabel.text = newAction.comment
                 cell.stateImage.isHidden = true
                 
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: TextViewTableViewCell.identifier, for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: TextViewTableViewCell.identifier, for: indexPath) as! TextViewTableViewCell
+                cell.textView.delegate = self
                 return cell
             }
         default: break
@@ -191,4 +199,12 @@ extension AddNewActionViewControllerPresenter: UIPickerViewDataSource {
 // MARK: UIPickerViewDelegate
 extension AddNewActionViewControllerPresenter: UIPickerViewDelegate {
     
+}
+
+// MARK: UITextViewDelegate
+extension AddNewActionViewControllerPresenter: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        newAction.comment = textView.text
+    }
 }

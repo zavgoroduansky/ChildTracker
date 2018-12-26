@@ -16,10 +16,6 @@
 		2F0E78B32195DB8A00585947 /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E78B22195DB8A00585947 /* DesignableButton.swift */; };
 		2F0E78B5219964DC00585947 /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E78B4219964DC00585947 /* ActivityManager.swift */; };
 		2F0E78B72199706200585947 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E78B62199706200585947 /* Enums.swift */; };
-		2F1AB93721AD9A820017610B /* Panels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1AB93621AD9A810017610B /* Panels.framework */; };
-		2F1AB93821AD9A820017610B /* Panels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1AB93621AD9A810017610B /* Panels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2F1AB93B21AD9D4C0017610B /* BottomPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1AB93921AD9D4C0017610B /* BottomPanelViewController.swift */; };
-		2F1AB93E21AD9EA30017610B /* BottomPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F1AB93D21AD9EA30017610B /* BottomPanel.storyboard */; };
 		2F1B9B7521BFF0A9006C79E4 /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1B9B7421BFF0A9006C79E4 /* SimpleButton.swift */; };
 		2F1B9B7721C113AE006C79E4 /* AddNewActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1B9B7621C113AE006C79E4 /* AddNewActionViewController.swift */; };
 		2F1B9B7D21C14F27006C79E4 /* AddNewActionViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1B9B7C21C14F27006C79E4 /* AddNewActionViewControllerPresenter.swift */; };
@@ -36,7 +32,6 @@
 		2F1B9B9C21C26210006C79E4 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1B9B9A21C26210006C79E4 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F1B9BA121C2A06A006C79E4 /* BasicOpenableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1B9B9F21C2A06A006C79E4 /* BasicOpenableTableViewCell.swift */; };
 		2F1B9BA221C2A06A006C79E4 /* BasicOpenableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F1B9BA021C2A06A006C79E4 /* BasicOpenableTableViewCell.xib */; };
-		2F3524E021B55C1C0038585C /* BottomPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3524DF21B55C1C0038585C /* BottomPageViewController.swift */; };
 		2F3524E621B55FF10038585C /* AdditionalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3524E521B55FF10038585C /* AdditionalViewController.swift */; };
 		2F3524E821B55FFA0038585C /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3524E721B55FFA0038585C /* MoreViewController.swift */; };
 		2F7A77FE21B6A2170054A32A /* UIImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A77FD21B6A2170054A32A /* UIImageHelper.swift */; };
@@ -63,6 +58,9 @@
 		2FA0658E21D11B30006A9543 /* ButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0658D21D11B30006A9543 /* ButtonsView.xib */; };
 		2FA0659021D11B89006A9543 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0658F21D11B89006A9543 /* ActionButton.swift */; };
 		2FA0659221D11BF6006A9543 /* ActionButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0659121D11BF6006A9543 /* ActionButton.xib */; };
+		2FA0659421D222B4006A9543 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0659321D222B4006A9543 /* MainTabBarViewController.swift */; };
+		2FA0659621D22F8F006A9543 /* ChildInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0659521D22F8F006A9543 /* ChildInfoView.swift */; };
+		2FA0659821D22F99006A9543 /* ChildInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0659721D22F99006A9543 /* ChildInfoView.xib */; };
 		2FCFEB5021930F6A0052F1A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFEB4F21930F6A0052F1A0 /* AppDelegate.swift */; };
 		2FCFEB5221930F6A0052F1A0 /* GreetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFEB5121930F6A0052F1A0 /* GreetingViewController.swift */; };
 		2FCFEB5521930F6A0052F1A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FCFEB5321930F6A0052F1A0 /* Main.storyboard */; };
@@ -113,7 +111,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2F98FBD2219B0FDD00EB3179 /* Realm.framework in Embed Frameworks */,
-				2F1AB93821AD9A820017610B /* Panels.framework in Embed Frameworks */,
 				2FCFEB90219340380052F1A0 /* IQKeyboardManagerSwift.framework in Embed Frameworks */,
 				2F98FBD5219B0FE400EB3179 /* RealmSwift.framework in Embed Frameworks */,
 				2F1B9B9C21C26210006C79E4 /* SnapKit.framework in Embed Frameworks */,
@@ -133,9 +130,6 @@
 		2F0E78B22195DB8A00585947 /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		2F0E78B4219964DC00585947 /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; };
 		2F0E78B62199706200585947 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
-		2F1AB93621AD9A810017610B /* Panels.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Panels.framework; path = Carthage/Build/iOS/Panels.framework; sourceTree = "<group>"; };
-		2F1AB93921AD9D4C0017610B /* BottomPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPanelViewController.swift; sourceTree = "<group>"; };
-		2F1AB93D21AD9EA30017610B /* BottomPanel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BottomPanel.storyboard; sourceTree = "<group>"; };
 		2F1B9B7421BFF0A9006C79E4 /* SimpleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleButton.swift; sourceTree = "<group>"; };
 		2F1B9B7621C113AE006C79E4 /* AddNewActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActionViewController.swift; sourceTree = "<group>"; };
 		2F1B9B7C21C14F27006C79E4 /* AddNewActionViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewActionViewControllerPresenter.swift; sourceTree = "<group>"; };
@@ -152,7 +146,6 @@
 		2F1B9B9A21C26210006C79E4 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		2F1B9B9F21C2A06A006C79E4 /* BasicOpenableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicOpenableTableViewCell.swift; sourceTree = "<group>"; };
 		2F1B9BA021C2A06A006C79E4 /* BasicOpenableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasicOpenableTableViewCell.xib; sourceTree = "<group>"; };
-		2F3524DF21B55C1C0038585C /* BottomPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPageViewController.swift; sourceTree = "<group>"; };
 		2F3524E521B55FF10038585C /* AdditionalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalViewController.swift; sourceTree = "<group>"; };
 		2F3524E721B55FFA0038585C /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		2F7A77FD21B6A2170054A32A /* UIImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageHelper.swift; sourceTree = "<group>"; };
@@ -177,6 +170,9 @@
 		2FA0658D21D11B30006A9543 /* ButtonsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonsView.xib; sourceTree = "<group>"; };
 		2FA0658F21D11B89006A9543 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		2FA0659121D11BF6006A9543 /* ActionButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionButton.xib; sourceTree = "<group>"; };
+		2FA0659321D222B4006A9543 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		2FA0659521D22F8F006A9543 /* ChildInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildInfoView.swift; sourceTree = "<group>"; };
+		2FA0659721D22F99006A9543 /* ChildInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildInfoView.xib; sourceTree = "<group>"; };
 		2FCFEB4C21930F6A0052F1A0 /* ChildTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChildTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FCFEB4F21930F6A0052F1A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FCFEB5121930F6A0052F1A0 /* GreetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingViewController.swift; sourceTree = "<group>"; };
@@ -213,7 +209,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F98FBD1219B0FDD00EB3179 /* Realm.framework in Frameworks */,
-				2F1AB93721AD9A820017610B /* Panels.framework in Frameworks */,
 				2FCFEB8F219340370052F1A0 /* IQKeyboardManagerSwift.framework in Frameworks */,
 				2F98FBD4219B0FE400EB3179 /* RealmSwift.framework in Frameworks */,
 			);
@@ -278,15 +273,6 @@
 			path = Types;
 			sourceTree = "<group>";
 		};
-		2F1B9B9321C2510E006C79E4 /* ButtomPages */ = {
-			isa = PBXGroup;
-			children = (
-				2F98FBE8219EE82200EB3179 /* ReportViewControllerPresenter.swift */,
-				2F7A77FF21B6C3010054A32A /* AdditionalViewControllerPresenter.swift */,
-			);
-			path = ButtomPages;
-			sourceTree = "<group>";
-		};
 		2F1B9B9421C25126006C79E4 /* AddNewAction */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,32 +290,13 @@
 			path = Types;
 			sourceTree = "<group>";
 		};
-		2F3524E121B55FBB0038585C /* BottomPage */ = {
-			isa = PBXGroup;
-			children = (
-				2F1B9B8B21C2509D006C79E4 /* AddNewAction */,
-				2F3524DF21B55C1C0038585C /* BottomPageViewController.swift */,
-				2F7A77FA21B665C80054A32A /* Pages */,
-			);
-			path = BottomPage;
-			sourceTree = "<group>";
-		};
-		2F7A77FA21B665C80054A32A /* Pages */ = {
-			isa = PBXGroup;
-			children = (
-				2F98FBE0219EC9FF00EB3179 /* ReportViewController.swift */,
-				2F3524E521B55FF10038585C /* AdditionalViewController.swift */,
-				2F3524E721B55FFA0038585C /* MoreViewController.swift */,
-			);
-			path = Pages;
-			sourceTree = "<group>";
-		};
 		2F98FBCB219AC3EC00EB3179 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
 				2F1B9B9421C25126006C79E4 /* AddNewAction */,
-				2F1B9B9321C2510E006C79E4 /* ButtomPages */,
 				2F98FBCC219AC41900EB3179 /* MainViewControllerPresenter.swift */,
+				2F98FBE8219EE82200EB3179 /* ReportViewControllerPresenter.swift */,
+				2F7A77FF21B6C3010054A32A /* AdditionalViewControllerPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -346,7 +313,6 @@
 			isa = PBXGroup;
 			children = (
 				2F1B9B9A21C26210006C79E4 /* SnapKit.framework */,
-				2F1AB93621AD9A810017610B /* Panels.framework */,
 				2F98FBD3219B0FE400EB3179 /* RealmSwift.framework */,
 				2F98FBD0219B0FDD00EB3179 /* Realm.framework */,
 				2FCFEB8E219340370052F1A0 /* IQKeyboardManagerSwift.framework */,
@@ -406,11 +372,13 @@
 			isa = PBXGroup;
 			children = (
 				2FCFEB7F219310050052F1A0 /* BaseViewController.swift */,
+				2FA0659321D222B4006A9543 /* MainTabBarViewController.swift */,
 				2FCFEB9B219448490052F1A0 /* MainViewController.swift */,
+				2F98FBE0219EC9FF00EB3179 /* ReportViewController.swift */,
+				2F3524E521B55FF10038585C /* AdditionalViewController.swift */,
+				2F3524E721B55FFA0038585C /* MoreViewController.swift */,
+				2F1B9B8B21C2509D006C79E4 /* AddNewAction */,
 				2FCFEB87219314A80052F1A0 /* StartPage */,
-				2F1AB93921AD9D4C0017610B /* BottomPanelViewController.swift */,
-				2F1AB93D21AD9EA30017610B /* BottomPanel.storyboard */,
-				2F3524E121B55FBB0038585C /* BottomPage */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -472,6 +440,8 @@
 				2FA0658921D11243006A9543 /* TitleView.xib */,
 				2FA0658B21D11B1D006A9543 /* ButtonsView.swift */,
 				2FA0658D21D11B30006A9543 /* ButtonsView.xib */,
+				2FA0659521D22F8F006A9543 /* ChildInfoView.swift */,
+				2FA0659721D22F99006A9543 /* ChildInfoView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -635,12 +605,12 @@
 				2F0E78AF2195D87200585947 /* StateButton.xib in Resources */,
 				2F1B9B8221C157FC006C79E4 /* ValuePickerTableViewCell.xib in Resources */,
 				2FCFEB5721930F6B0052F1A0 /* Assets.xcassets in Resources */,
+				2FA0659821D22F99006A9543 /* ChildInfoView.xib in Resources */,
 				2FA0659221D11BF6006A9543 /* ActionButton.xib in Resources */,
 				2FCFEB97219343180052F1A0 /* NormalButton.xib in Resources */,
 				2FA0658E21D11B30006A9543 /* ButtonsView.xib in Resources */,
 				2FCFEB5521930F6A0052F1A0 /* Main.storyboard in Resources */,
 				2F1B9BA221C2A06A006C79E4 /* BasicOpenableTableViewCell.xib in Resources */,
-				2F1AB93E21AD9EA30017610B /* BottomPanel.storyboard in Resources */,
 				2FA0658A21D11243006A9543 /* TitleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -680,7 +650,6 @@
 				2FA0658821D11212006A9543 /* TitleView.swift in Sources */,
 				2FCFEB5021930F6A0052F1A0 /* AppDelegate.swift in Sources */,
 				2F1B9B7521BFF0A9006C79E4 /* SimpleButton.swift in Sources */,
-				2F3524E021B55C1C0038585C /* BottomPageViewController.swift in Sources */,
 				2F98FBE1219EC9FF00EB3179 /* ReportViewController.swift in Sources */,
 				2FCFEB8A2193176E0052F1A0 /* Router.swift in Sources */,
 				2FCFEBA6219457300052F1A0 /* UIViewHelper.swift in Sources */,
@@ -690,7 +659,9 @@
 				2FA0658C21D11B1D006A9543 /* ButtonsView.swift in Sources */,
 				2FCFEB9F21944A280052F1A0 /* UIButtonHelper.swift in Sources */,
 				2FCFEB86219314960052F1A0 /* InitialViewController.swift in Sources */,
+				2FA0659621D22F8F006A9543 /* ChildInfoView.swift in Sources */,
 				2F0E789D2194621F00585947 /* UITextFieldHandler.swift in Sources */,
+				2FA0659421D222B4006A9543 /* MainTabBarViewController.swift in Sources */,
 				2F1B9B9721C25C7B006C79E4 /* AddNewDeficationViewControllerPresenter.swift in Sources */,
 				2F0E78AD2195D83200585947 /* DesignableView.swift in Sources */,
 				2F7A780021B6C3010054A32A /* AdditionalViewControllerPresenter.swift in Sources */,
@@ -708,7 +679,6 @@
 				2F98FBE9219EE82200EB3179 /* ReportViewControllerPresenter.swift in Sources */,
 				2F7A77FE21B6A2170054A32A /* UIImageHelper.swift in Sources */,
 				2FA0659021D11B89006A9543 /* ActionButton.swift in Sources */,
-				2F1AB93B21AD9D4C0017610B /* BottomPanelViewController.swift in Sources */,
 				2F98FBCF219AFFA900EB3179 /* FormatManager.swift in Sources */,
 				2F1B9B9221C250FD006C79E4 /* AddNewCustomViewController.swift in Sources */,
 				2F0E78A2219493AC00585947 /* ChildManager.swift in Sources */,

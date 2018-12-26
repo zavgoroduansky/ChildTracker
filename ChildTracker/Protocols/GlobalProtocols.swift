@@ -37,3 +37,18 @@ extension RotatableView {
         view.transform = view.transform.rotated(by: toAngle)
     }
 }
+
+protocol AlertableViewController {
+    
+    func showInfoView(title: String, text: String)
+}
+
+extension AlertableViewController where Self: UIViewController {
+    
+    func showInfoView(title: String, text: String) {
+        
+        let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+}

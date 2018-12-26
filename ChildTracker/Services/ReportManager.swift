@@ -14,6 +14,7 @@ class ReportManager {
     public var dataManager: DataManager?
     public var locationData = [LocationReportElement]()
     public var stateData = [StateReportElement]()
+    public var deficationData = [DeficationReportElement]()
     
     convenience init(dataManager: DataManager) {
         self.init()
@@ -39,6 +40,20 @@ extension ReportManager {
             self.stateData.removeAll()
             for line in result {
                 self.stateData.append(StateReportElement(state: line.key, duration: line.value))
+            }
+            completion(true)
+        })
+    }
+    
+    func deficationTotalActivity(interval: Intervals, completion: @escaping (Bool) -> Void) {
+        
+        dataManager?.deficationTotalActivity(interval: interval, completion: { (result) in
+            self.deficationData.removeAll()
+            let sortedKeys = Array(result.keys).sorted(by: { (first, second) -> Bool in
+                return first.rawValue < second.rawValue
+            })
+            for key in sortedKeys {
+                self.deficationData.append(DeficationReportElement(defication: key, quantity: result[key]!))
             }
             completion(true)
         })

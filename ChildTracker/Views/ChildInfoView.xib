@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChildInfoView" customModule="ChildTracker" customModuleProvider="target">
+            <connections>
+                <outlet property="childAgeLabel" destination="99q-ho-0hm" id="4Vv-n7-9fD"/>
+                <outlet property="childNameLabel" destination="lqE-VV-YPB" id="eca-X7-EjL"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="u2G-T5-cZf"/>
+                <outlet property="labelsContainerView" destination="9k0-Vj-KPS" id="bpo-9A-dha"/>
+                <outlet property="mainImageView" destination="IFQ-nW-0V1" id="3Mu-PC-4PH"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IFQ-nW-0V1">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9k0-Vj-KPS">
+                    <rect key="frame" x="0.0" y="230" width="375" height="70"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is your child name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqE-VV-YPB">
+                            <rect key="frame" x="15" y="5" width="345" height="23"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="23" id="Dtj-ea-qMc"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How old is your child" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99q-ho-0hm">
+                            <rect key="frame" x="15" y="43" width="345" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="KJW-TN-L1A"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.45344606164383561" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="99q-ho-0hm" secondAttribute="trailing" constant="15" id="27F-In-4de"/>
+                        <constraint firstItem="99q-ho-0hm" firstAttribute="leading" secondItem="9k0-Vj-KPS" secondAttribute="leading" constant="15" id="8Sq-M3-fdF"/>
+                        <constraint firstItem="99q-ho-0hm" firstAttribute="top" secondItem="lqE-VV-YPB" secondAttribute="bottom" constant="15" id="9Gc-pv-iXN"/>
+                        <constraint firstAttribute="trailing" secondItem="lqE-VV-YPB" secondAttribute="trailing" constant="15" id="9fi-qI-pBT"/>
+                        <constraint firstItem="lqE-VV-YPB" firstAttribute="leading" secondItem="9k0-Vj-KPS" secondAttribute="leading" constant="15" id="KHX-cF-j8z"/>
+                        <constraint firstAttribute="height" constant="70" id="bFI-EI-J3Z"/>
+                        <constraint firstItem="lqE-VV-YPB" firstAttribute="top" secondItem="9k0-Vj-KPS" secondAttribute="top" constant="5" id="cGR-V4-C8e"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSH-MQ-Z5g">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
+                    <connections>
+                        <action selector="setImageButtonAction:" destination="-1" eventType="touchUpInside" id="Qxn-xJ-4LP"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="9k0-Vj-KPS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="CXD-tO-mfn"/>
+                <constraint firstItem="fSH-MQ-Z5g" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="CwZ-D6-wF5"/>
+                <constraint firstItem="IFQ-nW-0V1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="FQd-sQ-lGn"/>
+                <constraint firstItem="IFQ-nW-0V1" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="QO8-Cg-w2z"/>
+                <constraint firstItem="fSH-MQ-Z5g" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="SsE-6G-JCK"/>
+                <constraint firstAttribute="trailing" secondItem="9k0-Vj-KPS" secondAttribute="trailing" id="USg-Gf-sCh"/>
+                <constraint firstItem="9k0-Vj-KPS" firstAttribute="top" secondItem="fSH-MQ-Z5g" secondAttribute="bottom" id="WnK-dc-sUe"/>
+                <constraint firstItem="IFQ-nW-0V1" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="X1n-Zx-mlA"/>
+                <constraint firstAttribute="bottom" secondItem="9k0-Vj-KPS" secondAttribute="bottom" id="ise-Dh-AqA"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fSH-MQ-Z5g" secondAttribute="trailing" id="l1r-9f-fYq"/>
+                <constraint firstItem="IFQ-nW-0V1" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="md7-qV-KxV"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="132" y="152.92353823088456"/>
+        </view>
+    </objects>
+</document>

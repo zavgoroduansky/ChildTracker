@@ -52,6 +52,12 @@ private extension ReportViewControllerPresenter {
                 tableView.reloadSections(IndexSet(arrayLiteral: 1), with: .automatic)
             }
         })
+        
+        reportManager?.deficationTotalActivity(interval: selectedSegment, completion: { (success) in
+            DispatchQueue.main.async {
+                tableView.reloadSections(IndexSet(arrayLiteral: 2), with: .automatic)
+            }
+        })
     }
 }
 
@@ -65,7 +71,7 @@ extension ReportViewControllerPresenter: UITableViewDelegate {
 extension ReportViewControllerPresenter: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,6 +81,8 @@ extension ReportViewControllerPresenter: UITableViewDataSource {
             return Location.allCases.count - 1
         case 1:
             return State.allCases.count - 1
+        case 2:
+            return DeficationType.allCases.count
         default:
             return 0
         }
@@ -87,6 +95,8 @@ extension ReportViewControllerPresenter: UITableViewDataSource {
             return "Location"
         case 1:
             return "State"
+        case 2:
+            return "Defication"
         default:
             return ""
         }
@@ -106,6 +116,11 @@ extension ReportViewControllerPresenter: UITableViewDataSource {
             if let element = reportManager?.stateData[indexPath.row] {
                 cell.textLabel?.text = element.state.title()
                 cell.detailTextLabel?.text = FormatManager.formatDurationForTimer(Int(element.duration))
+            }
+        case 2:
+            if let element = reportManager?.deficationData[indexPath.row] {
+                cell.textLabel?.text = element.defication.title()
+                cell.detailTextLabel?.text = element.quantity > 0 ? "\(element.quantity)" : ""
             }
         default: break
         }

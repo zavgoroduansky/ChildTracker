@@ -19,7 +19,7 @@ class ChildManager {
         }
     }
     
-    private static var internalChild: Child = Child(name: DefaultValues.defaultChildName, birthday: DefaultValues.defaultChildBirthday, growth: DefaultValues.defaultChildGrowth, weight: DefaultValues.defaultChildWeight)
+    private static var internalChild: Child = Child(name: DefaultValues.defaultChildName, birthday: DefaultValues.defaultChildBirthday, growth: DefaultValues.defaultChildGrowth, weight: DefaultValues.defaultChildWeight, image: nil)
     private static var childIsActual = false
 }
 

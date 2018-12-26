@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Panels
 
 class MainViewController: BaseViewController {
 
@@ -19,15 +18,9 @@ class MainViewController: BaseViewController {
             turnCurrentStateTo(stateLine: newValue)
         }
     }
-    lazy var panelManager = Panels(target: self)
-    var bottomPanel: BottomPanelViewController {
-        let controller = UIStoryboard.instantiatePanel(identifier: "BottomPanel") as! BottomPanelViewController
-        controller.delegate = self
-        return controller
-    }
-    
     
     // MARK: UI
+    @IBOutlet weak var childInfoContainer: ChildInfoView!
     @IBOutlet weak var locationSegmentedContainer: SegmentedView!
     @IBOutlet weak var statesContainer: UIView!
     @IBOutlet weak var currentStateBorderView: UIView!
@@ -41,19 +34,29 @@ class MainViewController: BaseViewController {
         super.viewDidLoad()
 
         setupViewElements()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         showFirstLaunchPageControl()
-        
-        var panelConfiguration = PanelConfiguration(size: .fullScreen)
-        panelConfiguration.useSafeArea = true
-        
-        // To present the panel
-        panelManager.show(panel: bottomPanel, config: panelConfiguration)
     }
 }
 
 // MARK: Public
 extension MainViewController {
 
+    func showFirstLaunchPageControl() {
+        
+        if UserDefaultManager.isThisFirstLaunch() {
+            performSegue(withIdentifier: "firstLaunch", sender: self)
+        }
+    }
+    
+    func newImageWasSelected(_ image: UIImage) {
+        childInfoContainer.mainImageView.image = image
+    }
+    
     func pauseResumeCurrentState() {
         
         if currentStateLine.state != .activity {
@@ -153,22 +156,15 @@ private extension MainViewController {
         return CGFloat(Double(state.numberOfElementsTo(currentStateLine.state)) * 90 * Double.pi / 180) // number of elements * 90 degrees
     }
     
-    func showFirstLaunchPageControl() {
-        
-        if UserDefaultManager.isThisFirstLaunch() {
-            performSegue(withIdentifier: "firstLaunch", sender: self)
-        }
-    }
-    
     func setupViewElements() {
         
-        // init rotate animation
         statesContainer.transform = CGAffineTransform(rotationAngle: CGFloat(0 * Double.pi / 180))
         
         currentStateBorderView.layer.borderColor = UIColor.red.cgColor
         currentStateBorderView.layer.borderWidth = 5
         currentStateBorderView.layer.cornerRadius = currentStateBorderView.bounds.height / 2
         
+        presenter?.setupChildInfoContainer(childInfoContainer)
         presenter?.setupLocationSegmentedContainer(locationSegmentedContainer)
         presenter?.setupStateContainer(topStateContainer, state: .activity, side: nil)
         presenter?.setupStateContainer(rightStateContainer, state: .sleep, side: nil)
@@ -177,19 +173,5 @@ private extension MainViewController {
     }
 }
 
-extension MainViewController: BottomPanelViewControllerDelegate {
-    
-    var buttonsActionIsAvailable: Bool {
-        return panelManager.isExpanded
-    }
-    
-    func openBottomPanel() {
-        panelManager.expandPanel()
-    }
-    
-    func closeBottomPanel() {
-        panelManager.collapsePanel()
-    }
-}
-
 extension MainViewController: RotatableView { }
+extension MainViewController: AlertableViewController { }

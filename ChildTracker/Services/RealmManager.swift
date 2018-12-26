@@ -82,7 +82,7 @@ extension RealmManager {
     
     static func fetchTotalDurationFor(locationId: Int, startDate: Date?, endDate: Date?, completion: @escaping (Double) -> Void) {
         
-        let predicateFormat = "location.id = \(locationId) AND duration > 0" + preparePredicateFormatString(startDate: startDate, endDate: endDate)
+        let predicateFormat = "location.id = \(locationId) AND duration > 0" + prepareStartFinishPredicateFormatString(startDate: startDate, endDate: endDate)
         
         let predicate = NSPredicate(format: predicateFormat)
         var duration: TimeInterval = 0
@@ -236,7 +236,7 @@ extension RealmManager {
                 for id in statesId {
                     var duration: Double = 0
                     
-                    let predicateFormat = String(format: "state.id = %i AND condition.id = %i", id, Condition.finished.rawValue) + preparePredicateFormatString(startDate: startDate, endDate: endDate)
+                    let predicateFormat = String(format: "state.id = %i AND condition.id = %i", id, Condition.finished.rawValue) + prepareStartFinishPredicateFormatString(startDate: startDate, endDate: endDate)
                     let predicate = NSPredicate(format: predicateFormat)
                     
                     let result = realm.objects(DBStateTracker.self).filter(predicate).sorted(byKeyPath: "start", ascending: true)
@@ -260,7 +260,7 @@ extension RealmManager {
 // MARK: Actions
 extension RealmManager {
     
-    static func trackNewAction(deficationType: DBDeficationType, date: Date, comment: String?, completion: @escaping (Bool) -> Void) {
+    static func trackNewDefication(_ deficationType: DBDeficationType, date: Date, comment: String?, completion: @escaping (Bool) -> Void) {
         
         realmQueue.async {
             let realm = try! Realm()
@@ -270,6 +270,26 @@ extension RealmManager {
                 }
             }
             completion(true)
+        }
+    }
+    
+    static func fetchTotalDurationFor(deficationId: [Int], startDate: Date?, endDate: Date?, completion: @escaping ([Int: Int]) -> Void) {
+        
+        var resultDictionary = [Int: Int]()
+        
+        realmQueue.async {
+            let realm = try! Realm()
+            autoreleasepool {
+                for id in deficationId {
+        
+                    let predicateFormat = String(format: "type.id = %i", id) + prepareDatePredicateFormatString(startDate: startDate, endDate: endDate)
+                    let predicate = NSPredicate(format: predicateFormat)
+                    
+                    let quantity = realm.objects(DBDeficationTracker.self).filter(predicate).count
+                    resultDictionary[id] = quantity
+                }
+            }
+            completion(resultDictionary)
         }
     }
 }
@@ -311,7 +331,7 @@ private extension RealmManager {
         return true
     }
     
-    static func preparePredicateFormatString(startDate: Date?, endDate: Date?) -> String {
+    static func prepareStartFinishPredicateFormatString(startDate: Date?, endDate: Date?) -> String {
         
         var predicateFormat = ""
         
@@ -336,6 +356,27 @@ private extension RealmManager {
             predicateFormat.append(NSPredicate(format: "(start < %@ AND finish > %@)", finish as CVarArg).predicateFormat)
             predicateFormat.append(" OR ")
             predicateFormat.append(NSPredicate(format: "(start < %@)", finish as CVarArg).predicateFormat)
+            predicateFormat.append(")")
+        }
+        
+        return predicateFormat
+    }
+    
+    static func prepareDatePredicateFormatString(startDate: Date?, endDate: Date?) -> String {
+    
+        var predicateFormat = ""
+        
+        if let start = startDate, let finish = endDate {
+            predicateFormat.append(" AND (")
+            predicateFormat.append(NSPredicate(format: "(date > %@ AND date < %@)", start as CVarArg, finish as CVarArg).predicateFormat)
+            predicateFormat.append(")")
+        } else if let start = startDate {
+            predicateFormat.append(" AND (")
+            predicateFormat.append(NSPredicate(format: "(date > %@)", start as CVarArg).predicateFormat)
+            predicateFormat.append(")")
+        } else if let finish = endDate {
+            predicateFormat.append(" AND (")
+            predicateFormat.append(NSPredicate(format: "(date < %@)", finish as CVarArg).predicateFormat)
             predicateFormat.append(")")
         }
         

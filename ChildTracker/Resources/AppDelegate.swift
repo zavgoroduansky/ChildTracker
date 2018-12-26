@@ -27,13 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = dataManager.setupConditionTypes()
         _ = dataManager.setupDeficationTypes()
         
-        // setup start controller
-        if let navigationController = window?.rootViewController as? UINavigationController {
-            if let mainViewController = navigationController.viewControllers.first as? MainViewController {
-                Router.prepareMainViewController(mainViewController)
-            }
-        }
-        
         return true
     }
 

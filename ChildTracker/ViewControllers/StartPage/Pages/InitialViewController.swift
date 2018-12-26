@@ -47,7 +47,7 @@ class InitialViewController: IntroPageBaseViewController {
             isFinished = false
         }
         
-        return isFinished ? Child(name: name!, birthday: birthdayDatePicker.date, growth: growth!, weight: weight!) : nil
+        return isFinished ? Child(name: name!, birthday: birthdayDatePicker.date.startOfDay, growth: growth!, weight: weight!, image: nil) : nil
     }
 }
 

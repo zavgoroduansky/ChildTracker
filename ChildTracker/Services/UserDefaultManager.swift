@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 let childKey            = "child"
 let notShowStartPageKey = "notShowStartPage"
@@ -34,6 +35,16 @@ class UserDefaultManager {
         return nil
     }
     
+    static func saveUserImage(_ image: UIImage) {
+        
+        let imageData = image.jpegData(compressionQuality: 1.0)
+        
+        if var currentUser = fetchUserData() {
+            currentUser.image = imageData
+            saveUserData(currentUser)
+        }
+    }
+    
     static func finishFirstLaunch() {
         
         let userDefaults = UserDefaults.standard
@@ -43,7 +54,7 @@ class UserDefaultManager {
     }
     
     static func isThisFirstLaunch() -> Bool {
-    
+        
         let userDefaults = UserDefaults.standard
         return !userDefaults.bool(forKey: notShowStartPageKey)
     }

@@ -1,4 +1,3 @@
 github "hackiftekhar/IQKeyboardManager"
 github "realm/realm-cocoa"
-github "antoniocasero/Panels"
 github "SnapKit/SnapKit" ~> 4.0.0

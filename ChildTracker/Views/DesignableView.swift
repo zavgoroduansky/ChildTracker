@@ -25,10 +25,6 @@ class DesignableView: UIView {
         setup()
     }
     
-    override func prepareForInterfaceBuilder() {
-        setup()
-    }
-    
     func setup() {
         // need to override
     }

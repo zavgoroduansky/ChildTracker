@@ -229,14 +229,30 @@ extension DataManager {
 // MARK: Actions
 extension DataManager {
     
-    static func addNewAction(defication: DeficationType, date: Date, comment: String?, completion: @escaping (Bool) -> Void) {
+    func addNewDefication(_ defication: DeficationType, date: Date, comment: String?, completion: @escaping (Bool) -> Void) {
         
-        RealmManager.trackNewAction(deficationType: DBDeficationType(type: defication), date: date, comment: comment) { (success) in
+        RealmManager.trackNewDefication(DBDeficationType(type: defication), date: date, comment: comment) { (success) in
             completion(success)
         }
     }
     
-    static func lastAction(defication: DeficationType, date: Date?, completion: @escaping (Bool) -> Void) {
+    func deficationTotalActivity(interval: Intervals, completion: @escaping ([DeficationType : Int]) -> Void) {
+    
+        // need to get interval
+        let dateInterval = interval.startDateFinishDate()
+        
+        RealmManager.fetchTotalDurationFor(deficationId: [DeficationType.wet.rawValue, DeficationType.dirty.rawValue, DeficationType.mixed.rawValue], startDate: dateInterval.start, endDate: dateInterval.finish) { (result) in
+            var answer = [DeficationType: Int]()
+            for line in result {
+                if let type = DeficationType.init(rawValue: line.key) {
+                    answer[type] = line.value
+                }
+            }
+            completion(answer)
+        }
+    }
+    
+    func lastDefication(_ defication: DeficationType, date: Date?, completion: @escaping (Bool) -> Void) {
         
         // need to fetch last defication for type
     }

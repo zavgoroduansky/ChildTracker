@@ -16,13 +16,9 @@ class Router {
                 viewControllerWith(name: "InfoViewController", in: "Main") as! UIViewController & IntroPageViewControllersProtocol]
     }
     
-    static func bottomPageViewControllers() -> [UIViewController & PageViewControllersProtocol] {
-        return [prepareReportViewController(),
-                prepareAdditionalViewController(),
-                prepareMoreViewController()]
-    }
-    
-    static func prepareMainViewController(_ controller: MainViewController) {
+    static func prepareMainViewController() -> MainViewController {
+        
+        let controller = viewControllerWith(name: "MainViewController", in: "Main") as! MainViewController
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -33,11 +29,13 @@ class Router {
         appDelegate.activityManager.delegate = presenter
         
         controller.presenter = presenter
+        
+        return controller
     }
     
-    static func prepareReportViewController() -> (UIViewController & PageViewControllersProtocol) {
+    static func prepareReportViewController() -> ReportViewController {
         
-        let controller = viewControllerWith(name: "ReportViewController", in: "BottomPanel") as! ReportViewController
+        let controller = viewControllerWith(name: "ReportViewController", in: "Main") as! ReportViewController
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -49,26 +47,26 @@ class Router {
         
         controller.presenter = presenter
         
-        return controller as UIViewController & PageViewControllersProtocol
+        return controller
     }
     
-    static func prepareAdditionalViewController() -> (UIViewController & PageViewControllersProtocol) {
+    static func prepareAdditionalViewController() -> AdditionalViewController {
         
-        let controller = viewControllerWith(name: "AdditionalViewController", in: "BottomPanel") as! AdditionalViewController
+        let controller = viewControllerWith(name: "AdditionalViewController", in: "Main") as! AdditionalViewController
         
         let presenter = AdditionalViewControllerPresenter()
         presenter.viewController = controller
         
         controller.presenter = presenter
         
-        return controller as UIViewController & PageViewControllersProtocol
+        return controller
     }
     
-    static func prepareMoreViewController() -> (UIViewController & PageViewControllersProtocol) {
+    static func prepareMoreViewController() -> MoreViewController {
         
-        let controller = viewControllerWith(name: "MoreViewController", in: "BottomPanel") as! MoreViewController
+        let controller = viewControllerWith(name: "MoreViewController", in: "Main") as! MoreViewController
         
-        return controller as UIViewController & PageViewControllersProtocol
+        return controller
     }
     
     static func prepareAddNewDeficationViewController(activity: DeficationType) -> AddNewActionViewController {
@@ -77,11 +75,14 @@ class Router {
         controller.modalPresentationStyle = .overCurrentContext
         controller.modalTransitionStyle = .crossDissolve
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
         let presenter = AddNewDeficationViewControllerPresenter()
         presenter.viewController = controller
+        presenter.activity = activity
+        presenter.dataManager = appDelegate.dataManager
         
         controller.presenter = presenter
-        controller.actionTitle = activity.title()
         
         return controller
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewControllerPresenter {
+class MainViewControllerPresenter: NSObject {
 
     // MARK: Properties
     public weak var viewController: MainViewController?
@@ -17,6 +17,23 @@ class MainViewControllerPresenter {
 
 // MARK: Public
 extension MainViewControllerPresenter {
+    
+    func setupChildInfoContainer(_ container: ChildInfoView) {
+        
+        container.mainImageView.image = ChildManager.child.photo
+        container.childNameLabel.text = ChildManager.child.name
+        container.childAgeLabel.text = ChildManager.child.age
+        container.setImageHandler = { [unowned self = self] (sender) in
+            
+            if UserDefaultManager.fetchUserData() != nil {
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                self.viewController?.show(imagePicker, sender: self)
+            } else {
+                self.viewController?.showInfoView(title: "Error", text: "Use need set user data firstly")
+            }
+        }
+    }
     
     func setupLocationSegmentedContainer(_ container: SegmentedView) {
         
@@ -121,4 +138,26 @@ private extension MainViewControllerPresenter {
         self.viewController?.currentStateLine = StateLine(state: state, startDate: Date(), duration: 0, side: side, condition: .active)
         self.activityManager?.currentStateLine = StateLine(state: state, startDate: Date(), duration: 0, side: side, condition: .active)
     }
+}
+
+extension MainViewControllerPresenter: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            
+            // need to save image to user defaults
+            UserDefaultManager.saveUserImage(image)
+            viewController?.newImageWasSelected(image)
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension MainViewControllerPresenter: UINavigationControllerDelegate {
+    
+    
 }
