@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol NewActionDelegate: AnyObject {
+    
+    func didUpdateDeficationState(type: DeficationType)
+}
+
 class AddNewActionViewControllerPresenter: NSObject {
 
     // MARK: Properties
     public var dataManager: DataManager?
+    public weak var delegate: NewActionDelegate?
     public weak var viewController: AddNewActionViewController?
     public var showValueSection: Bool {
         return false
@@ -24,7 +30,7 @@ class AddNewActionViewControllerPresenter: NSObject {
     private var showDatePicker = false
     
     func saveNewAction() {
-        // need to override
+        // need to update states
     }
 }
 

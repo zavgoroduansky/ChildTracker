@@ -72,7 +72,7 @@ class Router {
         return controller
     }
     
-    static func prepareAddNewDeficationViewController(activity: DeficationType) -> AddNewActionViewController {
+    static func prepareAddNewDeficationViewController(activity: DeficationType, delegate: NewActionDelegate?) -> AddNewActionViewController {
         
         let controller = AddNewDeficationViewController()
         controller.modalPresentationStyle = .overCurrentContext
@@ -84,6 +84,7 @@ class Router {
         presenter.viewController = controller
         presenter.activity = activity
         presenter.dataManager = appDelegate.dataManager
+        presenter.delegate = delegate
         
         controller.presenter = presenter
         

@@ -43,6 +43,10 @@ private extension AdditionalViewControllerPresenter {
             }
         })
     }
+    
+    func indexPathForDeficationType(_ type: DeficationType) -> IndexPath {
+        return IndexPath(row: type.rawValue, section: 0)
+    }
 }
 
 
@@ -54,7 +58,7 @@ extension AdditionalViewControllerPresenter: UITableViewDelegate {
         switch indexPath.section {
         case 0:
             if let selectedDeficationType = DeficationType.init(rawValue: indexPath.row) {
-                viewController?.showDetailViewController(Router.prepareAddNewDeficationViewController(activity: selectedDeficationType), sender: self)
+                viewController?.showDetailViewController(Router.prepareAddNewDeficationViewController(activity: selectedDeficationType, delegate: self), sender: self)
             }
         case 1:
             break
@@ -124,5 +128,18 @@ extension AdditionalViewControllerPresenter: UITableViewDataSource {
         }
         
         return cell
+    }
+}
+
+extension AdditionalViewControllerPresenter: NewActionDelegate {
+    
+    func didUpdateDeficationState(type: DeficationType) {
+        
+        dataManager?.detailedHistoryDefications([type], completion: { [unowned self = self] (resultDict) in
+            self.deficationDataSource?.merge(dict: resultDict)
+            DispatchQueue.main.async {
+                self.viewController?.tableView.reloadRows(at: [self.indexPathForDeficationType(type)], with: .fade)
+            }
+        })
     }
 }

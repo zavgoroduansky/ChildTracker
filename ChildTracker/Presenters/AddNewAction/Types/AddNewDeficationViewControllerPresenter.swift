@@ -19,7 +19,7 @@ class AddNewDeficationViewControllerPresenter: AddNewActionViewControllerPresent
     override func saveNewAction() {
         if let activityType = activity {
             dataManager?.addNewDefication(activityType, date: newAction.date, comment: newAction.comment) { (success) in
-                
+                self.delegate?.didUpdateDeficationState(type: activityType)
             }
         }
     }
