@@ -13,6 +13,9 @@ class AdditionalViewControllerPresenter: NSObject {
 
     // MARK: Properties
     public weak var viewController: AdditionalViewController?
+    public var dataManager: DataManager?
+    
+    private var deficationDataSource: [DeficationType : NewAction]?
 }
 
 // MARK: Public
@@ -33,7 +36,12 @@ private extension AdditionalViewControllerPresenter {
     func reloadTableView(_ tableView: UITableView) {
         
         // need to reload table view here with data from server
-        tableView.reloadData()
+        dataManager?.detailedHistoryDefications([DeficationType.wet, DeficationType.dirty, DeficationType.mixed], completion: { [unowned self = self] (resultDict) in
+            self.deficationDataSource = resultDict
+            DispatchQueue.main.async {
+                tableView.reloadData()
+            }
+        })
     }
 }
 
@@ -98,9 +106,14 @@ extension AdditionalViewControllerPresenter: UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
-            let currentDeficationType = DeficationType.init(rawValue: indexPath.row)
-            cell.textLabel?.text = currentDeficationType?.title()
-            cell.detailTextLabel?.text = "data from server"
+            if let currentDeficationType = DeficationType.init(rawValue: indexPath.row) {
+                cell.textLabel?.text = currentDeficationType.title()
+                var detailText = "Never"
+                if let action = deficationDataSource?[currentDeficationType] {
+                    detailText = "\(FormatManager.formatDayDifference(for: action.date))"
+                }
+                cell.detailTextLabel?.text = "Last time: \(detailText)"
+            }
         case 1:
             cell.textLabel?.text = "Temperature"
             cell.detailTextLabel?.text = "data from server"

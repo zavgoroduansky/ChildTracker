@@ -11,7 +11,6 @@ import UIKit
 class AddNewDeficationViewControllerPresenter: AddNewActionViewControllerPresenter {
     
     // MARK: Properties
-    public var dataManager: DataManager?
     override public var showValueSection: Bool {
         return false
     }

@@ -90,11 +90,14 @@ class StateButton: DesignableButton {
         
         switch state {
         case .finished:
+            detailLabel.isHidden = false
             playPauseImageView.isHidden = true
         case .active:
+            detailLabel.isHidden = true
             playPauseImageView.isHidden = false
             playPauseImageView.image = UIImage(named: "pause")
         case .paused:
+            detailLabel.isHidden = true
             playPauseImageView.isHidden = false
             playPauseImageView.image = UIImage(named: "play")
         }

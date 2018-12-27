@@ -136,9 +136,15 @@ extension DataManager {
         }
     }
     
-    func detailedHistoryStates(completion: @escaping ([StateLine]) -> Void) {
+    func detailedHistoryStates(_ states: [State], completion: @escaping ([StateLine]) -> Void) {
         
-        RealmManager.detailedHistoryStates(statesId: [State.sleep.rawValue, State.feeding.rawValue, State.bathing.rawValue]) { (realmStateTrackerArray) in
+        // convert to int
+        var statesArray = [Int]()
+        for state in states {
+            statesArray.append(state.rawValue)
+        }
+        
+        RealmManager.detailedHistoryStates(statesId: statesArray) { (realmStateTrackerArray) in
             var result = [StateLine]()
             
             for track in realmStateTrackerArray {
@@ -252,9 +258,27 @@ extension DataManager {
         }
     }
     
-    func lastDefication(_ defication: DeficationType, date: Date?, completion: @escaping (Bool) -> Void) {
-        
-        // need to fetch last defication for type
+    func detailedHistoryDefications(_ defications: [DeficationType], completion: @escaping ([DeficationType : NewAction]) -> Void) {
+
+        // convert to int
+        var deficationsArray = [Int]()
+        for defication in defications {
+            deficationsArray.append(defication.rawValue)
+        }
+
+        RealmManager.detailedHistoryDefications(deficationsId: deficationsArray) { (realmDeficationTrackerArray) in
+            var result = [DeficationType : NewAction]()
+
+            for track in realmDeficationTrackerArray {
+                
+                guard let deficationType = DataManager.convertDBDeficationType(track.type) else {
+                    continue
+                }
+                
+                result[deficationType] = NewAction(date: track.date, comment: track.comment ?? "")
+            }
+            completion(result)
+        }
     }
 }
 
@@ -312,5 +336,14 @@ private extension DataManager {
         }
         
         return Condition(rawValue: existedCondition.id)
+    }
+    
+    static func convertDBDeficationType(_ deficationType: DBDeficationType?) -> DeficationType? {
+        
+        guard let existedDeficationType = deficationType else {
+            return nil
+        }
+        
+        return DeficationType(rawValue: existedDeficationType.id)
     }
 }

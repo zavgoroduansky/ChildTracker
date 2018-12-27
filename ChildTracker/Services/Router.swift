@@ -54,8 +54,11 @@ class Router {
         
         let controller = viewControllerWith(name: "AdditionalViewController", in: "Main") as! AdditionalViewController
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
         let presenter = AdditionalViewControllerPresenter()
         presenter.viewController = controller
+        presenter.dataManager = appDelegate.dataManager
         
         controller.presenter = presenter
         
@@ -83,6 +86,24 @@ class Router {
         presenter.dataManager = appDelegate.dataManager
         
         controller.presenter = presenter
+        
+        return controller
+    }
+    
+    static func prepareAddNewTemperatureViewController() -> AddNewActionViewController {
+        
+        let controller = AddNewTemperatureViewController()
+        controller.modalPresentationStyle = .overCurrentContext
+        controller.modalTransitionStyle = .crossDissolve
+        
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//
+//        let presenter = AddNewDeficationViewControllerPresenter()
+//        presenter.viewController = controller
+//        presenter.activity = activity
+//        presenter.dataManager = appDelegate.dataManager
+//
+//        controller.presenter = presenter
         
         return controller
     }

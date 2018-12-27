@@ -99,8 +99,7 @@ extension ActivityManager {
         initCurrentLocation()
         initCurrentState()
         
-        detailTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(detailTimerTick), userInfo: nil, repeats: true)
-        detailTimer?.fire()
+        updateHistoryStates()
     }
 }
 
@@ -219,8 +218,8 @@ private extension ActivityManager {
         cleanStateTimerDuration()
         
         // save data to db
-        dataManager?.finishCurrentState(completion: { (success) in
-            
+        dataManager?.finishCurrentState(completion: { [unowned self = self] (success) in
+            self.updateHistoryStates()
         })
     }
     
@@ -250,11 +249,15 @@ private extension ActivityManager {
         stateTimerDuration += 1
         delegate?.stateTimerTick()
     }
+}
+
+// MARK: Public
+extension ActivityManager {
     
-    @objc func detailTimerTick() {
+    func updateHistoryStates() {
         
         // need to get history states with side
-        dataManager?.detailedHistoryStates(completion: { [unowned self] (stateLineArray) in
+        dataManager?.detailedHistoryStates([State.sleep, State.feeding, State.bathing], completion: { [unowned self] (stateLineArray) in
             DispatchQueue.main.async { [unowned self] in
                 self.delegate?.updateDetailedStateLines(stateLineArray)
             }

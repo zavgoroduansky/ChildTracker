@@ -11,6 +11,7 @@ import UIKit
 class AddNewActionViewControllerPresenter: NSObject {
 
     // MARK: Properties
+    public var dataManager: DataManager?
     public weak var viewController: AddNewActionViewController?
     public var showValueSection: Bool {
         return false

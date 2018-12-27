@@ -292,6 +292,22 @@ extension RealmManager {
             completion(resultDictionary)
         }
     }
+    
+    static func detailedHistoryDefications(deficationsId: [Int], completion: @escaping ([DBDeficationTracker]) -> Void) {
+        
+        var result = [DBDeficationTracker]()
+        
+        realmQueue.async {
+            let realm = try! Realm()
+            for id in deficationsId {
+                let predicate = NSPredicate(format: "type.id = %i", id)
+                if let deficationTracker = realm.objects(DBDeficationTracker.self).filter(predicate).sorted(byKeyPath: "date", ascending: false).first {
+                    result.append(deficationTracker)
+                }
+            }
+            completion(result)
+        }
+    }
 }
 
 // MARK: info

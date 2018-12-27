@@ -14,6 +14,5 @@ class AddNewDeficationViewController: AddNewActionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
 }
