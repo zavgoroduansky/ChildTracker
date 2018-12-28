@@ -62,6 +62,7 @@
 		2FA0659621D22F8F006A9543 /* ChildInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0659521D22F8F006A9543 /* ChildInfoView.swift */; };
 		2FA0659821D22F99006A9543 /* ChildInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0659721D22F99006A9543 /* ChildInfoView.xib */; };
 		2FA0659A21D52C29006A9543 /* DictionaryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0659921D52C29006A9543 /* DictionaryHelper.swift */; };
+		2FA0659C21D64E07006A9543 /* AddNewTemperatureViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0659B21D64E07006A9543 /* AddNewTemperatureViewControllerPresenter.swift */; };
 		2FCFEB5021930F6A0052F1A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFEB4F21930F6A0052F1A0 /* AppDelegate.swift */; };
 		2FCFEB5221930F6A0052F1A0 /* GreetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFEB5121930F6A0052F1A0 /* GreetingViewController.swift */; };
 		2FCFEB5521930F6A0052F1A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FCFEB5321930F6A0052F1A0 /* Main.storyboard */; };
@@ -175,6 +176,7 @@
 		2FA0659521D22F8F006A9543 /* ChildInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildInfoView.swift; sourceTree = "<group>"; };
 		2FA0659721D22F99006A9543 /* ChildInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildInfoView.xib; sourceTree = "<group>"; };
 		2FA0659921D52C29006A9543 /* DictionaryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryHelper.swift; sourceTree = "<group>"; };
+		2FA0659B21D64E07006A9543 /* AddNewTemperatureViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTemperatureViewControllerPresenter.swift; sourceTree = "<group>"; };
 		2FCFEB4C21930F6A0052F1A0 /* ChildTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChildTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FCFEB4F21930F6A0052F1A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FCFEB5121930F6A0052F1A0 /* GreetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingViewController.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				2F1B9B9621C25C7B006C79E4 /* AddNewDeficationViewControllerPresenter.swift */,
+				2FA0659B21D64E07006A9543 /* AddNewTemperatureViewControllerPresenter.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				2FCFEB9A2194213B0052F1A0 /* IntroPageBaseViewController.swift in Sources */,
 				2F98FBDA219B12D900EB3179 /* RealmManager.swift in Sources */,
 				2FCFEB80219310050052F1A0 /* BaseViewController.swift in Sources */,
+				2FA0659C21D64E07006A9543 /* AddNewTemperatureViewControllerPresenter.swift in Sources */,
 				2FCFEBA121944C2F0052F1A0 /* UserDefaultManager.swift in Sources */,
 				2F0E78B32195DB8A00585947 /* DesignableButton.swift in Sources */,
 				2FCFEB8D219317FD0052F1A0 /* GlobalProtocols.swift in Sources */,

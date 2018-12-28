@@ -13,6 +13,7 @@ class AddNewActionViewController: BaseViewController {
 
     // MARK: Properties
     public var presenter: AddNewActionViewControllerPresenter?
+    public var actionTitle: String?
     
     // MARK: UI
     private let mainContainerView: UIView = UIView(frame: CGRect.zero)
@@ -52,7 +53,7 @@ private extension AddNewActionViewController {
         
         tableView.tableFooterView = UIView()
         
-        titleView.titleLabel.text = presenter?.activity?.title()
+        titleView.titleLabel.text = actionTitle
         
         mainContainerView.backgroundColor = UIColor.white
         mainContainerView.layer.cornerRadius = 10

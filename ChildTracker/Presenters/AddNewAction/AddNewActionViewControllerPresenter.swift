@@ -23,14 +23,13 @@ class AddNewActionViewControllerPresenter: NSObject {
         return false
     }
     
-    public var activity: DeficationType?
     public var newAction: NewAction = NewAction()
     
     private var showValuePicker = false
     private var showDatePicker = false
     
     func saveNewAction() {
-        // need to update states
+        // need to override
     }
 }
 
@@ -137,39 +136,6 @@ extension AddNewActionViewControllerPresenter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
-        case 0:
-            if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: BasicOpenableTableViewCell.identifier, for: indexPath) as! BasicOpenableTableViewCell
-                
-                cell.titleLabel.text = "Value:"
-                cell.valueLabel.text = ""
-                
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: ValuePickerTableViewCell.identifier, for: indexPath)
-                
-                // need to set values for picker
-                
-                return cell
-            }
-        case 1:
-            if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: BasicOpenableTableViewCell.identifier, for: indexPath) as! BasicOpenableTableViewCell
-                
-                cell.titleLabel.text = "Date:"
-                cell.valueLabel.text = newAction.date.datePickerFormatString
-                
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: DatePickerTableViewCell.identifier, for: indexPath) as! DatePickerTableViewCell
-                
-                cell.valueChangedHandler = { [unowned self = self] sender in
-                    self.newAction.date = sender.date
-                    tableView.reloadRows(at: [IndexPath(row: 0, section: indexPath.section)], with: .automatic)
-                }
-                
-                return cell
-            }
         case 2:
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: BasicOpenableTableViewCell.identifier, for: indexPath) as! BasicOpenableTableViewCell
@@ -189,23 +155,6 @@ extension AddNewActionViewControllerPresenter: UITableViewDataSource {
         
         return UITableViewCell()
     }
-}
-
-// MARK: UIPickerViewDataSource
-extension AddNewActionViewControllerPresenter: UIPickerViewDataSource {
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 0
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 0
-    }
-}
-
-// MARK: UIPickerViewDelegate
-extension AddNewActionViewControllerPresenter: UIPickerViewDelegate {
-    
 }
 
 // MARK: UITextViewDelegate

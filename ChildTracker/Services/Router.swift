@@ -87,24 +87,26 @@ class Router {
         presenter.delegate = delegate
         
         controller.presenter = presenter
+        controller.actionTitle = activity.title()
         
         return controller
     }
     
-    static func prepareAddNewTemperatureViewController() -> AddNewActionViewController {
+    static func prepareAddNewTemperatureViewController(delegate: NewActionDelegate?) -> AddNewActionViewController {
         
         let controller = AddNewTemperatureViewController()
         controller.modalPresentationStyle = .overCurrentContext
         controller.modalTransitionStyle = .crossDissolve
         
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//
-//        let presenter = AddNewDeficationViewControllerPresenter()
-//        presenter.viewController = controller
-//        presenter.activity = activity
-//        presenter.dataManager = appDelegate.dataManager
-//
-//        controller.presenter = presenter
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+        let presenter = AddNewTemperatureViewControllerPresenter()
+        presenter.viewController = controller
+        presenter.dataManager = appDelegate.dataManager
+        presenter.delegate = delegate
+
+        controller.presenter = presenter
+        controller.actionTitle = "Temperature"
         
         return controller
     }

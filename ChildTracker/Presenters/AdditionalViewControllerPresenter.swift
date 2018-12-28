@@ -61,7 +61,7 @@ extension AdditionalViewControllerPresenter: UITableViewDelegate {
                 viewController?.showDetailViewController(Router.prepareAddNewDeficationViewController(activity: selectedDeficationType, delegate: self), sender: self)
             }
         case 1:
-            break
+            viewController?.showDetailViewController(Router.prepareAddNewTemperatureViewController(delegate: self), sender: self)
         case 2:
             break
         default: break
