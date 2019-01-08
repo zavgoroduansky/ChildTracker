@@ -232,7 +232,7 @@ extension DataManager {
     }
 }
 
-// MARK: Actions
+// MARK: Defications
 extension DataManager {
     
     func addNewDefication(_ defication: DeficationType, date: Date, comment: String?, completion: @escaping (Bool) -> Void) {
@@ -247,7 +247,7 @@ extension DataManager {
         // need to get interval
         let dateInterval = interval.startDateFinishDate()
         
-        RealmManager.fetchTotalDurationFor(deficationId: [DeficationType.wet.rawValue, DeficationType.dirty.rawValue, DeficationType.mixed.rawValue], startDate: dateInterval.start, endDate: dateInterval.finish) { (result) in
+        RealmManager.fetchTotalQuantityFor(deficationId: [DeficationType.wet.rawValue, DeficationType.dirty.rawValue, DeficationType.mixed.rawValue], startDate: dateInterval.start, endDate: dateInterval.finish) { (result) in
             var answer = [DeficationType: Int]()
             for line in result {
                 if let type = DeficationType.init(rawValue: line.key) {
@@ -258,7 +258,7 @@ extension DataManager {
         }
     }
     
-    func detailedHistoryDefications(_ defications: [DeficationType], completion: @escaping ([DeficationType : NewAction]) -> Void) {
+    func lastDefication(_ defications: [DeficationType], completion: @escaping ([DeficationType : NewAction]) -> Void) {
 
         // convert to int
         var deficationsArray = [Int]()
@@ -266,7 +266,7 @@ extension DataManager {
             deficationsArray.append(defication.rawValue)
         }
 
-        RealmManager.detailedHistoryDefications(deficationsId: deficationsArray) { (realmDeficationTrackerArray) in
+        RealmManager.fetchLastDefication(deficationsId: deficationsArray) { (realmDeficationTrackerArray) in
             var result = [DeficationType : NewAction]()
 
             for track in realmDeficationTrackerArray {
@@ -275,9 +275,33 @@ extension DataManager {
                     continue
                 }
                 
-                result[deficationType] = NewAction(date: track.date, comment: track.comment ?? "")
+                result[deficationType] = NewAction(date: track.date, comment: track.comment)
             }
             completion(result)
+        }
+    }
+}
+
+// MARK: Temperature
+extension DataManager {
+
+    func addNewTemperature(_ temperature: Double, date: Date, comment: String?, completion: @escaping (Bool) -> Void) {
+        
+        RealmManager.trackNewTemperature(temperature, date: date, comment: comment) { (success) in
+            completion(success)
+        }
+    }
+    
+    func lastTemperature(completion: @escaping (TemperatureAction?) -> Void) {
+        
+        RealmManager.fetchLastTemperature() { (realmTemperatureTracker) in
+
+            guard let temperatureLine = realmTemperatureTracker else {
+                completion(nil)
+                return
+            }
+            
+            completion(TemperatureAction(temperature: temperatureLine.temperature, date: temperatureLine.date, comment: temperatureLine.comment))
         }
     }
 }

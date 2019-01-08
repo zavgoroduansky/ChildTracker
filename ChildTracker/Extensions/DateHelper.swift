@@ -13,8 +13,8 @@ extension Date {
     static let timeIntervalDay: Double = 60*60*24
     static let timeIntervalWeek: Double = 60*60*24*7
     private static var gregorianCalender: Calendar {
-        var calendar = Calendar.init(identifier: .gregorian)
-        calendar.timeZone = TimeZone(identifier: "UTC")!
+        let calendar = Calendar.init(identifier: .gregorian)
+        //calendar.timeZone = TimeZone(identifier: "UTC")!
         return calendar
     }
     

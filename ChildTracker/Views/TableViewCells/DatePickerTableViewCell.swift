@@ -13,12 +13,12 @@ class DatePickerTableViewCell: UITableViewCell {
     static let identifier = "DatePicker"
     static let normalHeight: CGFloat = 120
     
-    public var valueChangedHandler: ((UIDatePicker) -> Void)?
+    public var valueChangedHandler: ((Date) -> Void)?
     
     // MARK: UI
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBAction func datePickerValueChangedAction(_ sender: UIDatePicker) {
-        valueChangedHandler?(sender)
+        valueChangedHandler?(sender.date)
     }
     
     override func awakeFromNib() {

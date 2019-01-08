@@ -29,7 +29,9 @@ class AddNewTemperatureViewControllerPresenter: AddNewActionViewControllerPresen
     
     // MARK: Override
     override func saveNewAction() {
-        
+        dataManager?.addNewTemperature(selectedTemperature, date: newAction.date, comment: newAction.comment, completion: { (success) in
+            self.delegate?.didUpdateTemperature()
+        })
     }
 }
 

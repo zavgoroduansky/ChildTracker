@@ -154,3 +154,18 @@ class DBDeficationTracker: Object {
         self.comment    = comment
     }
 }
+
+class DBTemperatureTracker: Object {
+    
+    @objc dynamic var temperature: Double = 0.0
+    @objc dynamic var date = Date()
+    @objc dynamic var comment: String?
+    
+    convenience init(temperature: Double, startDate: Date, comment: String?) {
+        self.init()
+        
+        self.temperature    = temperature
+        self.date           = startDate
+        self.comment        = comment
+    }
+}

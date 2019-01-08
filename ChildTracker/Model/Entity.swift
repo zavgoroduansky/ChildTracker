@@ -84,8 +84,26 @@ struct StateLine: Equatable {
     }
 }
 
-struct NewAction {
+class NewAction {
     
     var date: Date = Date()
-    var comment: String = ""
+    var comment: String?
+    
+    convenience init(date: Date, comment: String?) {
+        self.init()
+        
+        self.date       = date
+        self.comment    = comment
+    }
+}
+
+class TemperatureAction: NewAction {
+    
+    var temperature: Double = 0.0
+    
+    convenience init(temperature: Double, date: Date, comment: String?) {
+        self.init(date: date, comment: comment)
+        
+        self.temperature = temperature
+    }
 }

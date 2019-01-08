@@ -16,6 +16,7 @@ class AdditionalViewControllerPresenter: NSObject {
     public var dataManager: DataManager?
     
     private var deficationDataSource: [DeficationType : NewAction]?
+    private var lastTemperature: TemperatureAction?
 }
 
 // MARK: Public
@@ -36,9 +37,16 @@ private extension AdditionalViewControllerPresenter {
     func reloadTableView(_ tableView: UITableView) {
         
         // need to reload table view here with data from server
-        dataManager?.detailedHistoryDefications([DeficationType.wet, DeficationType.dirty, DeficationType.mixed], completion: { [unowned self = self] (resultDict) in
+        dataManager?.lastDefication([DeficationType.wet, DeficationType.dirty, DeficationType.mixed], completion: { [unowned self = self] (resultDict) in
             self.deficationDataSource = resultDict
             DispatchQueue.main.async {
+                tableView.reloadData()
+            }
+        })
+        
+        dataManager?.lastTemperature(completion: { [unowned self = self] (temperatureAction) in
+            DispatchQueue.main.async {
+                self.lastTemperature = temperatureAction
                 tableView.reloadData()
             }
         })
@@ -54,6 +62,8 @@ private extension AdditionalViewControllerPresenter {
 extension AdditionalViewControllerPresenter: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.section {
         case 0:
@@ -120,7 +130,11 @@ extension AdditionalViewControllerPresenter: UITableViewDataSource {
             }
         case 1:
             cell.textLabel?.text = "Temperature"
-            cell.detailTextLabel?.text = "data from server"
+            var detailText = "Never"
+            if let action = lastTemperature {
+                detailText = "\(FormatManager.formatDayDifference(for: action.date)) was \(action.temperature)"
+            }
+            cell.detailTextLabel?.text = "Last time: \(detailText)"
         case 2:
             cell.textLabel?.text = "Custom activity"
             cell.detailTextLabel?.text = "data from server"
@@ -135,10 +149,20 @@ extension AdditionalViewControllerPresenter: NewActionDelegate {
     
     func didUpdateDeficationState(type: DeficationType) {
         
-        dataManager?.detailedHistoryDefications([type], completion: { [unowned self = self] (resultDict) in
+        dataManager?.lastDefication([type], completion: { [unowned self = self] (resultDict) in
             self.deficationDataSource?.merge(dict: resultDict)
             DispatchQueue.main.async {
                 self.viewController?.tableView.reloadRows(at: [self.indexPathForDeficationType(type)], with: .fade)
+            }
+        })
+    }
+    
+    func didUpdateTemperature() {
+        
+        dataManager?.lastTemperature(completion: { [unowned self = self] (temperatureAction) in
+            self.lastTemperature = temperatureAction
+            DispatchQueue.main.async {
+                self.viewController?.tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .fade)
             }
         })
     }

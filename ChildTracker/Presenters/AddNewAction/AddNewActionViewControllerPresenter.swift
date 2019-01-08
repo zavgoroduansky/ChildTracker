@@ -11,6 +11,7 @@ import UIKit
 protocol NewActionDelegate: AnyObject {
     
     func didUpdateDeficationState(type: DeficationType)
+    func didUpdateTemperature()
 }
 
 class AddNewActionViewControllerPresenter: NSObject {
@@ -23,7 +24,7 @@ class AddNewActionViewControllerPresenter: NSObject {
         return false
     }
     
-    public var newAction: NewAction = NewAction()   // need to think about it and totaly removed
+    public var newAction: NewAction = NewAction()
     
     private var showValuePicker = false
     private var showDatePicker = false
@@ -147,8 +148,8 @@ extension AddNewActionViewControllerPresenter: UITableViewDataSource {
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: DatePickerTableViewCell.identifier, for: indexPath) as! DatePickerTableViewCell
                 
-                cell.valueChangedHandler = { [unowned self = self] sender in
-                    self.newAction.date = sender.date
+                cell.valueChangedHandler = { [unowned self = self] selectedDate in
+                    self.newAction.date = selectedDate
                     self.viewController?.updateTableView(for: [IndexPath(row: 0, section: indexPath.section)], with: .automatic)
                 }
                 

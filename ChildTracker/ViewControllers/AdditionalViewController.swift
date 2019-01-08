@@ -16,7 +16,7 @@ class AdditionalViewController: BaseViewController {
     // MARK: UI
     @IBOutlet weak var tableView: UITableView!
     @IBAction func addButtonAction(_ sender: UIButton) {
-        
+        // need to add some custom activity
     }
     
     // MARK: Lifecircle

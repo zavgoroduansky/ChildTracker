@@ -257,7 +257,7 @@ extension RealmManager {
     }
 }
 
-// MARK: Actions
+// MARK: Defications
 extension RealmManager {
     
     static func trackNewDefication(_ deficationType: DBDeficationType, date: Date, comment: String?, completion: @escaping (Bool) -> Void) {
@@ -273,7 +273,7 @@ extension RealmManager {
         }
     }
     
-    static func fetchTotalDurationFor(deficationId: [Int], startDate: Date?, endDate: Date?, completion: @escaping ([Int: Int]) -> Void) {
+    static func fetchTotalQuantityFor(deficationId: [Int], startDate: Date?, endDate: Date?, completion: @escaping ([Int: Int]) -> Void) {
         
         var resultDictionary = [Int: Int]()
         
@@ -293,7 +293,7 @@ extension RealmManager {
         }
     }
     
-    static func detailedHistoryDefications(deficationsId: [Int], completion: @escaping ([DBDeficationTracker]) -> Void) {
+    static func fetchLastDefication(deficationsId: [Int], completion: @escaping ([DBDeficationTracker]) -> Void) {
         
         var result = [DBDeficationTracker]()
         
@@ -306,6 +306,32 @@ extension RealmManager {
                 }
             }
             completion(result)
+        }
+    }
+}
+
+// MARK: Temperature
+extension RealmManager {
+    
+    static func trackNewTemperature(_ temperature: Double, date: Date, comment: String?, completion: @escaping (Bool) -> Void) {
+        
+        realmQueue.async {
+            let realm = try! Realm()
+            try! realm.write {
+                realm.create(DBTemperatureTracker.self, value: DBTemperatureTracker(temperature: temperature, startDate: date, comment: comment), update: false)
+            }
+            completion(true)
+        }
+    }
+    
+    static func fetchLastTemperature(completion: @escaping (DBTemperatureTracker?) -> Void) {
+        
+        realmQueue.async {
+            let realm = try! Realm()
+            if let temperatureTracker = realm.objects(DBTemperatureTracker.self).sorted(byKeyPath: "date", ascending: false).first {
+                completion(temperatureTracker)
+            }
+            completion(nil)
         }
     }
 }
