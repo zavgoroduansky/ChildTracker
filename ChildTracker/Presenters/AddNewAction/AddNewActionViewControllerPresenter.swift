@@ -149,7 +149,7 @@ extension AddNewActionViewControllerPresenter: UITableViewDataSource {
                 
                 cell.valueChangedHandler = { [unowned self = self] sender in
                     self.newAction.date = sender.date
-                    tableView.reloadRows(at: [IndexPath(row: 0, section: indexPath.section)], with: .automatic)
+                    self.viewController?.updateTableView(for: [IndexPath(row: 0, section: indexPath.section)], with: .automatic)
                 }
                 
                 return cell

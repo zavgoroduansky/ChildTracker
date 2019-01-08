@@ -36,6 +36,13 @@ class AddNewActionViewController: BaseViewController {
     }
 }
 
+extension AddNewActionViewController {
+    
+    func updateTableView(for rows: [IndexPath], with animation: UITableView.RowAnimation) {
+        tableView.reloadRows(at: rows, with: animation)
+    }
+}
+
 private extension AddNewActionViewController {
     
     @objc func tapGestureHandler(sender: UITapGestureRecognizer) {

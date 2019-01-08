@@ -35,7 +35,7 @@ class AddNewTemperatureViewControllerPresenter: AddNewActionViewControllerPresen
 
 // MARK: UITableViewDataSource
 extension AddNewTemperatureViewControllerPresenter {
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
@@ -52,6 +52,10 @@ extension AddNewTemperatureViewControllerPresenter {
                 
                 cell.pickerView.delegate = self
                 cell.pickerView.dataSource = self
+                
+                if let index = temperatureArray.index(of: selectedTemperature) {
+                    cell.pickerView.selectRow(index, inComponent: 0, animated: true)
+                }
                 
                 return cell
             }
@@ -78,5 +82,10 @@ extension AddNewTemperatureViewControllerPresenter: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return String(temperatureArray[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedTemperature = temperatureArray[row]
+        viewController?.updateTableView(for: [IndexPath(row: 0, section: 0)], with: .automatic)
     }
 }
